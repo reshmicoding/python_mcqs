@@ -1,0 +1,2935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Python Reasoning MCQ Question Bank — Crash Course + Language Basics</title>
+<style>
+  :root{
+    --bg:#0f1220; --panel:#161a2e; --panel2:#1c2140; --text:#e8e9f3; --muted:#a4a9c7;
+    --accent:#7c9dff; --accent2:#5ee6c8; --warn:#ffb454; --bad:#ff6b6b; --good:#5ee6a0;
+    --code:#0b0e1c; --border:#2b3050;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0; background:var(--bg); color:var(--text);
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height:1.55;
+  }
+  header{
+    padding:36px 24px 24px; background:linear-gradient(135deg,#1a1f3d,#0f1220);
+    border-bottom:1px solid var(--border);
+  }
+  header h1{margin:0 0 8px; font-size:1.7rem;}
+  header p{margin:4px 0; color:var(--muted); max-width:900px;}
+  .wrap{max-width:980px; margin:0 auto; padding:0 20px 80px;}
+  nav.toc{
+    background:var(--panel); border:1px solid var(--border); border-radius:10px;
+    padding:18px 22px; margin:28px 0; columns:2; column-gap:24px;
+  }
+  nav.toc h2{margin-top:0; column-span:all;}
+  nav.toc a{color:var(--accent); text-decoration:none; display:block; padding:4px 0; break-inside:avoid;}
+  nav.toc a:hover{text-decoration:underline;}
+  section.chapter{margin-top:56px;}
+  section.chapter > h2{
+    font-size:1.35rem; border-left:4px solid var(--accent); padding-left:12px;
+    margin-bottom:4px;
+  }
+  .chapter-intro{color:var(--muted); margin:6px 0 22px; font-size:0.95rem;}
+  .q{
+    background:var(--panel); border:1px solid var(--border); border-radius:10px;
+    padding:18px 20px; margin:16px 0;
+  }
+  .qtype{
+    display:inline-block; font-size:0.72rem; letter-spacing:.03em; text-transform:uppercase;
+    background:var(--panel2); color:var(--accent2); padding:3px 9px; border-radius:20px; margin-bottom:10px;
+  }
+  .qtext{margin:6px 0 10px; font-weight:600;}
+  .qtext .qnum{color:var(--accent); margin-right:6px;}
+  pre{
+    background:var(--code); border:1px solid var(--border); border-radius:8px;
+    padding:12px 14px; overflow-x:auto; font-size:0.87rem; margin:10px 0;
+  }
+  code{font-family: "Cascadia Code","Consolas",monospace;}
+  ol.opts{list-style:none; padding-left:0; margin:12px 0;}
+  ol.opts li{
+    padding:7px 10px; margin:5px 0; background:var(--panel2); border-radius:6px;
+    border:1px solid var(--border); font-size:0.94rem;
+  }
+  ol.opts li b{color:var(--accent); margin-right:6px;}
+  details{
+    margin-top:12px; background:#11142400; border-top:1px dashed var(--border); padding-top:10px;
+  }
+  summary{
+    cursor:pointer; color:var(--accent); font-weight:600; outline:none; padding:4px 0;
+  }
+  summary:hover{color:var(--accent2);}
+  .answer-block{padding:10px 2px 2px;}
+  .correct{color:var(--good); font-weight:700;}
+  .why{margin:8px 0;}
+  .wrong-list{margin:6px 0 6px 18px; padding:0;}
+  .wrong-list li{margin:4px 0; color:var(--text);}
+  .concept{
+    display:inline-block; margin-top:10px; font-size:0.8rem; color:var(--warn);
+    border:1px solid #4a3a1f; background:#241d10; padding:3px 10px; border-radius:20px;
+  }
+  .source-tag{color:var(--muted); font-size:0.78rem; margin-left:6px;}
+  footer{color:var(--muted); text-align:center; padding:30px; font-size:0.85rem;}
+  a.top{font-size:0.8rem; color:var(--muted); text-decoration:none;}
+</style>
+</head>
+<body>
+<header>
+  <h1>Python Reasoning MCQ Question Bank</h1>
+  <p>Merged from <em>Data Science from Scratch</em> (Python Crash Course chapter), <em>Python for Data Analysis</em> (Python Language Basics + Built-In Data Structures, Functions &amp; Files chapters), and the two accompanying "Financial Audit System" Jupyter notebooks (Basics of Python; Sequence Data Types).</p>
+  <p>Every question is designed to test <strong>reasoning about behavior</strong> — predicting output, spotting subtle bugs, judging Pythonic style, and explaining <em>why</em> — not recall of syntax. Questions progress from foundational to advanced, following the order the concepts are introduced in the source material.</p>
+</header>
+<div class="wrap">
+
+<nav class="toc">
+  <h2>Contents</h2>
+  <a href="#s1">1. Python Fundamentals: comments, print/input, objects</a>
+  <a href="#s2">2. Variables, Typing &amp; Reference Semantics</a>
+  <a href="#s3">3. Numbers, Arithmetic &amp; PEMDAS</a>
+  <a href="#s4">4. Booleans, Truthiness, None &amp; Logical/Identity/Membership Ops</a>
+  <a href="#s5">5. Bitwise Operators</a>
+  <a href="#s6">6. Type Casting</a>
+  <a href="#s7">7. Strings</a>
+  <a href="#s8">8. Control Flow</a>
+  <a href="#s9">9. Lists</a>
+  <a href="#s10">10. Tuples</a>
+  <a href="#s11">11. Dictionaries</a>
+  <a href="#s12">12. Sets</a>
+  <a href="#s13">13. Built-In Sequence Functions</a>
+  <a href="#s14">14. Comprehensions</a>
+  <a href="#s15">15. Functions</a>
+  <a href="#s16">16. Generators, Iterators &amp; itertools</a>
+  <a href="#s17">17. Errors &amp; Exception Handling</a>
+  <a href="#s18">18. Files &amp; the Operating System</a>
+  <a href="#s19">19. Object-Oriented Programming Basics</a>
+  <a href="#s20">20. Type Annotations, Testing &amp; Misc.</a>
+</nav>
+
+<section class="chapter" id="s1">
+<h2>1. Python Fundamentals: Comments, print/input, Whitespace, Objects</h2>
+<p class="chapter-intro">Sources: DSFS Python Crash Course (whitespace formatting, modules); PDA §2.3 Language Semantics (indentation, everything is an object, comments, duck typing); Lab 1 notebook (comments/docstrings, input()).</p>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q1.</span> This exact confusion appears in the Lab 1 notebook. Suppose the following is saved as <code>audit.py</code> and run from the command line with <code>python audit.py</code> (NOT typed into a Jupyter cell):</p>
+<pre><code>"""
+This script automates financial audit processes.
+"""
+print("Audit started")</code></pre>
+<ol class="opts">
+<li><b>A.</b> Two lines print: the docstring text, then "Audit started".</li>
+<li><b>B.</b> Only "Audit started" is printed.</li>
+<li><b>C.</b> Nothing is printed, because triple-quoted text is a comment that Python skips entirely, including the print() call.</li>
+<li><b>D.</b> A SyntaxError is raised because comments cannot span multiple lines.</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">The triple-quoted block is <em>not</em> a comment — Python has no multi-line comment syntax. It is a string literal used as a standalone expression statement. Python evaluates it, creates a string object, and immediately discards it because nothing is printing or storing it. In a script, unused expression results are never displayed (that only happens in the interactive REPL/Jupyter, which echoes the value of the last expression as <code>Out[]</code>). So only the explicit <code>print("Audit started")</code> produces visible output.</p>
+<p class="why"><strong>Why the others are wrong:</strong></p>
+<ul class="wrong-list">
+<li><b>A</b> confuses REPL/notebook echo behavior with script execution — in Jupyter this string would show as <code>Out[]</code>, but running as a <code>.py</code> file never echoes bare expressions.</li>
+<li><b>C</b> incorrectly treats the triple-quoted string as a real comment; Python still parses and evaluates it as code, it just produces no visible side effect.</li>
+<li><b>D</b> is wrong because triple-quoted strings are valid, fully legal multi-line string literals — there is no syntax error.</li>
+</ul>
+<p class="concept">Concept: docstrings/string literals vs. comments; REPL echo vs. script execution</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q2.</span> Duck typing via the iterator protocol (PDA):</p>
+<pre><code>def isiterable(obj):
+    try:
+        iter(obj)
+        return True
+    except TypeError:
+        return False
+
+print(isiterable("audit"), isiterable(42), isiterable([1, 2, 3]))</code></pre>
+<ol class="opts">
+<li><b>A.</b> True True True</li>
+<li><b>B.</b> False False False</li>
+<li><b>C.</b> True False True</li>
+<li><b>D.</b> TypeError is raised because 42 is not iterable</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: C</p>
+<p class="why">Strings and lists implement the iterator protocol (calling <code>iter()</code> on them succeeds), so both return <code>True</code>. Integers do not implement <code>__iter__</code>, so <code>iter(42)</code> raises <code>TypeError</code> — but that error is caught inside the <code>try/except</code>, so the function simply returns <code>False</code> rather than letting the exception propagate.</p>
+<p class="why"><strong>Why the others are wrong:</strong></p>
+<ul class="wrong-list">
+<li><b>A</b> wrongly assumes every object is iterable.</li>
+<li><b>B</b> wrongly assumes nothing here is iterable.</li>
+<li><b>D</b> ignores that the function's whole purpose is to catch that exact <code>TypeError</code> and convert it into a clean <code>False</code> — this is the essence of duck typing via EAFP ("easier to ask forgiveness than permission").</li>
+</ul>
+<p class="concept">Concept: duck typing, the iterator protocol, EAFP-style exception handling</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which raises an error?</p>
+<p class="qtext"><span class="qnum">Q3.</span> Python uses indentation, not braces, to delimit blocks. Which of the following raises an <code>IndentationError</code>?</p>
+<pre><code>A)
+x = -5
+if x < 0:
+    print("negative")
+
+B)
+x = -5
+if x < 0:
+  print("negative")
+
+C)
+x = -5
+if x < 0:
+    print("negative")
+      print("very negative")
+
+D)
+x = -5; y = -3; z = x + y</code></pre>
+<ol class="opts">
+<li><b>A.</b> Option A</li>
+<li><b>B.</b> Option B</li>
+<li><b>C.</b> Option C</li>
+<li><b>D.</b> Option D</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: C</p>
+<p class="why">Once a block's indentation level is established (4 spaces, in this case), every statement in that block must share that <em>exact</em> indentation. The second <code>print</code> line jumps to a deeper, inconsistent indentation with no new colon-headed block to justify it, which Python's parser rejects as an <code>IndentationError</code>.</p>
+<p class="why"><strong>Why the others are wrong:</strong></p>
+<ul class="wrong-list">
+<li><b>A</b> uses a consistent 4-space indent — perfectly valid (4 spaces is also the style PDA recommends).</li>
+<li><b>B</b> uses only 2 spaces, but that's still consistent within the block, so it's legal (just not the recommended style).</li>
+<li><b>D</b> uses semicolons to place multiple statements on one line, which is legal Python (though PDA notes it's discouraged for readability) — no indentation is even involved.</li>
+</ul>
+<p class="concept">Concept: significant whitespace / indentation-based blocks</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which is valid?</p>
+<p class="qtext"><span class="qnum">Q4.</span> Based on the naming rules demonstrated in Lab 1 (auditing-themed variables), which of the following is a <strong>valid</strong> Python variable name?</p>
+<ol class="opts">
+<li><b>A.</b> <code>4total_expenditure</code></li>
+<li><b>B.</b> <code>audit_fund-allocation</code></li>
+<li><b>C.</b> <code>_audit_risk_score</code></li>
+<li><b>D.</b> <code>class</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: C</p>
+<p class="why"><code>_audit_risk_score</code> starts with an underscore (allowed) and otherwise uses only letters and underscores — fully valid, and the leading underscore is a common convention for "internal" variables.</p>
+<p class="why"><strong>Why the others are wrong:</strong></p>
+<ul class="wrong-list">
+<li><b>A</b> starts with a digit, which is never allowed for identifiers.</li>
+<li><b>B</b> contains a hyphen; Python would parse this as <code>audit_fund - allocation</code> (subtraction of two undefined names), causing a <code>NameError</code> at best, or a <code>SyntaxError</code> if used on the left of <code>=</code>.</li>
+<li><b>D</b> is a reserved keyword — reusing it as a variable name raises a <code>SyntaxError</code>.</li>
+</ul>
+<p class="concept">Concept: identifier/variable naming rules</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">True or False</p>
+<p class="qtext"><span class="qnum">Q5.</span> Lab 1 demonstrates: <code>salary_net = 60000</code>, <code>Salary_net = 70000</code>, then prints <code>id(salary_net)</code> and <code>id(Salary_net)</code> and gets two different memory addresses. True or False: Python variable names are case-sensitive, so <code>salary_net</code> and <code>Salary_net</code> are two completely independent variables.</p>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False — Python treats them as the same variable since the only difference is casing.</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A (True)</p>
+<p class="why">Python identifiers are case-sensitive. <code>salary_net</code> and <code>Salary_net</code> are distinct names bound to distinct objects (as proven by their different <code>id()</code> values in the notebook), even though the underlying values happen to both be integers.</p>
+<p class="why"><strong>Why the other is wrong:</strong></p>
+<ul class="wrong-list">
+<li><b>B</b> is a common misconception carried over from case-insensitive languages/systems (e.g., some SQL dialects or Windows filenames); Python is not one of them.</li>
+</ul>
+<p class="concept">Concept: identifier case-sensitivity</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q6.</span> The built-in <code>print</code> function accepts <code>sep</code> and <code>end</code> keyword arguments (shown via <code>print?</code> introspection in PDA). Predict the output:</p>
+<pre><code>print(1, 2, 3, sep="-", end="!")
+print("done")</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>1 2 3!\ndone</code></li>
+<li><b>B.</b> <code>1-2-3!done</code></li>
+<li><b>C.</b> <code>1-2-3</code> on one line, then <code>!done</code> on the next</li>
+<li><b>D.</b> TypeError: print() got unexpected keyword arguments</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>sep="-"</code> replaces the default space between printed values, giving <code>1-2-3</code>. <code>end="!"</code> replaces the default trailing newline with <code>"!"</code>, so no newline is emitted after the first print call — the second <code>print("done")</code> therefore continues immediately on the same line, producing <code>1-2-3!done</code>.</p>
+<p class="why"><strong>Why the others are wrong:</strong></p>
+<ul class="wrong-list">
+<li><b>A</b> assumes default separators/newlines were used, ignoring the explicit <code>sep</code>/<code>end</code> arguments.</li>
+<li><b>C</b> wrongly assumes a newline still occurs after "!" — but <code>end</code> fully replaces the default <code>"\n"</code>.</li>
+<li><b>D</b> is wrong because <code>sep</code> and <code>end</code> are legitimate, documented keyword arguments of <code>print</code>.</li>
+</ul>
+<p class="concept">Concept: print()'s sep/end keyword arguments</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s2">
+<h2>2. Variables, Typing &amp; Reference Semantics</h2>
+<p class="chapter-intro">Sources: PDA §2.3 "Variables and argument passing", "Dynamic references, strong types", "Mutable and immutable objects"; Lab 1 "is"/"is not" identity operators.</p>
+
+<div class="q">
+<p class="qtype">Which object is modified?</p>
+<p class="qtext"><span class="qnum">Q1.</span> From PDA's reference-semantics example:</p>
+<pre><code>a = [1, 2, 3]
+b = a
+a.append(4)
+print(b)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>[1, 2, 3]</code> — b is unaffected</li>
+<li><b>B.</b> <code>[1, 2, 3, 4]</code> — b reflects the change</li>
+<li><b>C.</b> An error, because b was never explicitly reassigned</li>
+<li><b>D.</b> <code>[4]</code> — only the appended element</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>b = a</code> does not copy the list — it makes <code>b</code> a second name referring to the very same list object as <code>a</code>. <code>a.append(4)</code> mutates that one underlying object in place, so viewing it through either name shows the update.</p>
+<p class="why"><strong>Why the others are wrong:</strong></p>
+<ul class="wrong-list">
+<li><b>A</b> assumes assignment copies the list, as it would in some other languages — Python assignment only binds names to objects.</li>
+<li><b>C</b> is wrong; no reassignment of <code>b</code> is needed since <code>b</code> and <code>a</code> already point to the same mutable object.</li>
+<li><b>D</b> misunderstands <code>append</code> as replacing the list rather than adding to it.</li>
+</ul>
+<p class="concept">Concept: assignment as reference binding, not copying</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">True or False</p>
+<p class="qtext"><span class="qnum">Q2.</span> Continuing the same scenario: <code>c = list(a)</code>. True or False: <code>a is c</code> evaluates to <code>True</code>.</p>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B (False)</p>
+<p class="why"><code>list(a)</code> always constructs a brand-new list object containing copies of the references inside <code>a</code>. So while <code>a == c</code> is <code>True</code> (equal contents), <code>a is c</code> is <code>False</code> because they are two distinct objects in memory.</p>
+<p class="why"><strong>Why the other is wrong:</strong></p>
+<ul class="wrong-list">
+<li><b>A</b> confuses value equality (<code>==</code>) with object identity (<code>is</code>) — a very common beginner mix-up that PDA calls out explicitly.</li>
+</ul>
+<p class="concept">Concept: <code>is</code> (identity) vs. <code>==</code> (equality); the list() constructor as a copy operation</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Identify the Subtle Bug</p>
+<p class="qtext"><span class="qnum">Q3.</span> A colleague writes a helper function inspired by PDA's <code>append_element</code> example:</p>
+<pre><code>def append_item(item, target_list=[]):
+    target_list.append(item)
+    return target_list
+
+result1 = append_item("apple")
+result2 = append_item("banana")
+print(result1)
+print(result2)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>['apple']</code> then <code>['banana']</code> — each call gets a fresh empty list</li>
+<li><b>B.</b> <code>['apple', 'banana']</code> printed twice — both calls share the same default list</li>
+<li><b>C.</b> TypeError, because default arguments cannot be lists</li>
+<li><b>D.</b> <code>['apple']</code> then <code>['apple', 'banana']</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Default argument values are evaluated <em>once</em>, when the <code>def</code> statement executes — not once per call. So <code>target_list=[]</code> creates a single list object that becomes permanently bound to the function's default and is reused (and mutated) on every call that doesn't supply its own list. After <code>append_item("apple")</code>, that shared list is <code>['apple']</code>; after <code>append_item("banana")</code>, it becomes <code>['apple', 'banana']</code> — and both <code>result1</code> and <code>result2</code> point at that same object, so printing either shows the fully accumulated list.</p>
+<p class="why"><strong>Why the others are wrong:</strong></p>
+<ul class="wrong-list">
+<li><b>A</b> is the intuitive-but-wrong assumption most learners make — it would be true only if the default were re-created fresh each call (which is how it works for, e.g., a default of <code>None</code> handled inside the function body).</li>
+<li><b>C</b> is wrong; lists are perfectly legal default values syntactically — the danger is semantic (shared mutable state), not a syntax error.</li>
+<li><b>D</b> incorrectly shows result1 as if it "froze" at the time of its own call — but result1 and result2 are literally the same object, so printing result1 *after* result2 was populated shows the same accumulated contents.</li>
+</ul>
+<p class="concept">Concept: the mutable default argument pitfall</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which statement is true?</p>
+<p class="qtext"><span class="qnum">Q4.</span> Based on Lab 1's audit report identity examples:</p>
+<pre><code>audit_report_1 = {"year": 2024, "status": "Pending"}
+audit_report_2 = audit_report_1
+audit_report_3 = {"year": 2024, "status": "Pending"}</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>audit_report_1 is audit_report_2</code> is True, and <code>audit_report_1 is audit_report_3</code> is True</li>
+<li><b>B.</b> <code>audit_report_1 is audit_report_2</code> is True, and <code>audit_report_1 is audit_report_3</code> is False, but <code>audit_report_1 == audit_report_3</code> is True</li>
+<li><b>C.</b> <code>audit_report_1 is audit_report_2</code> is False</li>
+<li><b>D.</b> <code>audit_report_1 == audit_report_3</code> is False, since they are different objects</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>audit_report_2 = audit_report_1</code> makes both names refer to the exact same dict object, so <code>is</code> reports True. <code>audit_report_3</code> is a separately-constructed dict literal — a different object in memory — even though it happens to hold identical key/value pairs, so <code>is</code> reports False while <code>==</code> (which compares contents) reports True.</p>
+<p class="why"><strong>Why the others are wrong:</strong></p>
+<ul class="wrong-list">
+<li><b>A</b> wrongly assumes two separately-created dicts with equal contents are the same object.</li>
+<li><b>C</b> wrongly assumes plain assignment creates a copy.</li>
+<li><b>D</b> confuses identity with equality — <code>==</code> checks values, not memory location.</li>
+</ul>
+<p class="concept">Concept: identity vs. equality for mutable objects</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which raises an error?</p>
+<p class="qtext"><span class="qnum">Q5.</span> PDA emphasizes that Python is strongly typed. Which of the following raises a <code>TypeError</code>?</p>
+<ol class="opts">
+<li><b>A.</b> <code>"5" + 5</code></li>
+<li><b>B.</b> <code>"5" + "5"</code></li>
+<li><b>C.</b> <code>5 + 5.0</code></li>
+<li><b>D.</b> <code>str(5) + "5"</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A</p>
+<p class="why">Python never implicitly converts between <code>str</code> and numeric types for <code>+</code>. Mixing them raises: <code>TypeError: can only concatenate str (not "int") to str</code>.</p>
+<p class="why"><strong>Why the others are wrong:</strong></p>
+<ul class="wrong-list">
+<li><b>B</b> concatenates two strings — perfectly valid, produces <code>"55"</code>.</li>
+<li><b>C</b> is a permitted implicit conversion: int is promoted to float for arithmetic, giving <code>10.0</code>.</li>
+<li><b>D</b> first converts the integer to a string explicitly with <code>str()</code>, then concatenates two strings — valid, gives <code>"55"</code>.</li>
+</ul>
+<p class="concept">Concept: strong typing — no implicit str/number coercion, except for permitted numeric promotions</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q6.</span></p>
+<pre><code>a = 5
+b = 4.5
+print(isinstance(a, (int, float)), isinstance(b, int))</code></pre>
+<ol class="opts">
+<li><b>A.</b> True True</li>
+<li><b>B.</b> True False</li>
+<li><b>C.</b> False False</li>
+<li><b>D.</b> TypeError — isinstance can't take a tuple of types</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>isinstance</code> accepts a tuple of types and returns True if the object matches <em>any</em> of them; <code>a</code> (an int) matches <code>(int, float)</code>, so the first call is True. <code>b</code> is a <code>float</code>, not an <code>int</code>, so <code>isinstance(b, int)</code> is False (Python does not consider float a subtype of int).</p>
+<p class="why"><strong>Why the others are wrong:</strong></p>
+<ul class="wrong-list">
+<li><b>A</b> incorrectly assumes float values count as ints.</li>
+<li><b>C</b> incorrectly assumes 5 doesn't match <code>(int, float)</code>.</li>
+<li><b>D</b> is wrong — passing a tuple of types to <code>isinstance</code> is explicitly documented, valid usage.</li>
+</ul>
+<p class="concept">Concept: isinstance() with a tuple of types</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which value changes, and why?</p>
+<p class="qtext"><span class="qnum">Q7.</span></p>
+<pre><code>def modify(x):
+    x = x + 1
+    return x
+
+def modify_list(lst):
+    lst.append(99)
+
+n = 10
+modify(n)
+print(n)
+
+nums = [1, 2, 3]
+modify_list(nums)
+print(nums)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>11</code> then <code>[1, 2, 3, 99]</code></li>
+<li><b>B.</b> <code>10</code> then <code>[1, 2, 3]</code></li>
+<li><b>C.</b> <code>10</code> then <code>[1, 2, 3, 99]</code></li>
+<li><b>D.</b> <code>11</code> then <code>[1, 2, 3]</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: C</p>
+<p class="why"><code>modify(n)</code> receives a copy of the reference to the int <code>10</code>; the line <code>x = x + 1</code> rebinds the <em>local</em> name <code>x</code> to a brand-new int object, leaving the caller's <code>n</code> completely untouched (ints are immutable and there's no mechanism for a plain assignment inside a function to affect the caller). By contrast, <code>modify_list</code> receives a reference to the same list object as <code>nums</code>, and <code>.append()</code> mutates that shared object in place, so the change is visible through <code>nums</code> after the call.</p>
+<p class="why"><strong>Why the others are wrong:</strong></p>
+<ul class="wrong-list">
+<li><b>A</b> and <b>D</b> wrongly assume reassigning a parameter name inside a function changes the caller's variable.</li>
+<li><b>B</b> wrongly assumes lists are also passed "by value" like integers.</li>
+</ul>
+<p class="concept">Concept: pass-by-object-reference; rebinding vs. mutating</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s3">
+<h2>3. Numbers, Arithmetic Operators &amp; PEMDAS</h2>
+<p class="chapter-intro">Sources: PDA §2.3 "Numeric types" and Table 2-1 (binary operators); Lab 1 "Order of Operations" (PEMDAS) and Arithmetic/Assignment Operators.</p>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q1.</span></p>
+<pre><code>print(3 / 2)
+print(3 // 2)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>1</code> then <code>1</code></li>
+<li><b>B.</b> <code>1.5</code> then <code>1</code></li>
+<li><b>C.</b> <code>1.5</code> then <code>1.5</code></li>
+<li><b>D.</b> <code>1.5</code> then <code>2</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>/</code> is "true division" in Python 3 and always returns a float, even when the result is a whole number. <code>//</code> is floor division and drops the fractional part, returning an <code>int</code> here (1).</p>
+<p class="why"><strong>Why the others are wrong:</strong> A ignores that <code>/</code> always yields a float; C ignores that <code>//</code> truncates to an int/whole number; D rounds instead of flooring.</p>
+<p class="concept">Concept: true division (/) vs. floor division (//)</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Identify the Subtle Bug</p>
+<p class="qtext"><span class="qnum">Q2.</span> Lab 1's "Exponentiation Assignment" example is commented as computing compound interest:</p>
+<pre><code># Applying compound interest on unpaid tax over three years at 5%.
+unpaid_tax = 2000
+interest_rate = 1.05
+years = 3
+unpaid_tax **= years   # (unpaid_tax) ** years
+print(round(unpaid_tax, 2))</code></pre>
+<p>What does this code actually compute, and what's wrong with it?</p>
+<ol class="opts">
+<li><b>A.</b> It correctly computes <code>2000 * 1.05 ** 3 ≈ 2315.25</code>.</li>
+<li><b>B.</b> It computes <code>2000 ** 3 = 8,000,000,000</code>, completely ignoring <code>interest_rate</code> — the bug is that <code>**=</code> raises <code>unpaid_tax</code> to the power of <code>years</code> instead of multiplying by <code>interest_rate ** years</code>.</li>
+<li><b>C.</b> It raises a TypeError because you can't use <code>**=</code> on an int.</li>
+<li><b>D.</b> It computes <code>interest_rate ** years</code> and stores that in <code>unpaid_tax</code>, discarding the original 2000.</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>unpaid_tax **= years</code> is shorthand for <code>unpaid_tax = unpaid_tax ** years</code>, i.e. <code>2000 ** 3</code>. The variable <code>interest_rate</code> is defined but never actually used in the calculation — the comment's intent (compound interest, which should be <code>unpaid_tax * (interest_rate ** years)</code>, i.e. <code>unpaid_tax *= interest_rate ** years</code>) does not match what the code does. This is a real, easy-to-miss bug: the code runs without error and produces a plausible-looking number, but it's the wrong number for the stated purpose.</p>
+<p class="why"><strong>Why the others are wrong:</strong></p>
+<ul class="wrong-list">
+<li><b>A</b> is what the code was <em>supposed</em> to compute, not what it actually computes.</li>
+<li><b>C</b> is wrong; <code>**=</code> works fine on ints.</li>
+<li><b>D</b> misreads which operand is being replaced — the augmented assignment updates <code>unpaid_tax</code> using its own old value as the base, not <code>interest_rate</code>.</li>
+</ul>
+<p class="concept">Concept: augmented assignment operators (<code>**=</code>) — semantics matter, not just "it runs"</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q3.</span> Apply PEMDAS:</p>
+<pre><code>print(2 + 3 * 4 ** 2 // 5 - 1)</code></pre>
+<ol class="opts">
+<li><b>A.</b> 10</li>
+<li><b>B.</b> 11</li>
+<li><b>C.</b> 33</li>
+<li><b>D.</b> 9</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A</p>
+<p class="why">Order of operations: exponent first (<code>4 ** 2 = 16</code>), then multiplication (<code>3 * 16 = 48</code>), then floor division (<code>48 // 5 = 9</code>), then left-to-right addition/subtraction (<code>2 + 9 - 1 = 10</code>).</p>
+<p class="why"><strong>Why the others are wrong:</strong> B forgets the final <code>- 1</code>; C evaluates <code>+</code> before <code>*</code>/<code>**</code> (wrong precedence); D applies <code>//5</code> to the wrong sub-expression.</p>
+<p class="concept">Concept: PEMDAS operator precedence</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q4.</span></p>
+<pre><code>a = 13
+b = a % 3
+print(b)</code></pre>
+<ol class="opts">
+<li><b>A.</b> 1</li>
+<li><b>B.</b> 4</li>
+<li><b>C.</b> 0</li>
+<li><b>D.</b> 3</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A</p>
+<p class="why"><code>13 % 3</code> is the remainder after dividing 13 by 3 (which goes in 4 times, i.e. 12, with 1 left over): <code>13 = 4*3 + 1</code>, so the remainder is 1.</p>
+<p class="why"><strong>Why the others are wrong:</strong> B is the quotient, not remainder; C would be the remainder if 13 were exactly divisible by 3; D is the divisor itself, not the result of the operation.</p>
+<p class="concept">Concept: the modulus operator (%)</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Unexpected Behavior</p>
+<p class="qtext"><span class="qnum">Q5.</span> PDA notes floor division is "C-style" only for positive numbers. Predict the output:</p>
+<pre><code>print(-7 // 2)</code></pre>
+<ol class="opts">
+<li><b>A.</b> -3 (truncated toward zero, like C's integer division)</li>
+<li><b>B.</b> -4 (floored toward negative infinity)</li>
+<li><b>C.</b> -3.5</li>
+<li><b>D.</b> 3</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Python's <code>//</code> always rounds <em>down</em> toward negative infinity (true "floor" division), not toward zero. <code>-7 / 2 = -3.5</code>, and flooring -3.5 gives -4 — not -3, which is what truncation-toward-zero (the C convention) would give. This mismatch with other languages is a classic source of off-by-one bugs when porting code.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A applies C-style truncation, not Python's actual floor semantics; C forgets that <code>//</code> yields an int, not a float, for two ints; D has the wrong sign entirely.</p>
+<p class="concept">Concept: floor division with negative operands</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s4">
+<h2>4. Booleans, Truthiness, None &amp; Logical / Identity / Membership Operators</h2>
+<p class="chapter-intro">Sources: PDA "Booleans", "None", "if/elif/else" (short-circuiting); Lab 1 Logical/Membership/Identity Operators.</p>
+
+<div class="q">
+<p class="qtype">Which is False?</p>
+<p class="qtext"><span class="qnum">Q1.</span> Lab 1 shows <code>bool(" ")</code> evaluating to <code>True</code> and <code>bool(-1)</code> evaluating to <code>True</code>. Which of the following is the <strong>only</strong> one that evaluates to <code>False</code>?</p>
+<ol class="opts">
+<li><b>A.</b> <code>bool(" ")</code></li>
+<li><b>B.</b> <code>bool(-1)</code></li>
+<li><b>C.</b> <code>bool([0])</code></li>
+<li><b>D.</b> <code>bool(0)</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: D</p>
+<p class="why">Only the integer <code>0</code> itself is falsy among these. A string containing just a space is non-empty, so it's truthy. Any nonzero number, including negative numbers like -1, is truthy. A list containing one element — even the element <code>0</code> — is a non-empty list, and non-empty containers are truthy regardless of what they contain.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A and C are both non-empty containers/strings (truthy); B is a nonzero number (truthy) — the common mistake is assuming only positive numbers are truthy, but *all* nonzero numbers are.</p>
+<p class="concept">Concept: truthiness rules for numbers, strings, and containers</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">True or False</p>
+<p class="qtext"><span class="qnum">Q2.</span></p>
+<pre><code>a = 5; b = 7; c = 8; d = 4
+if a < b or c > d:
+    print("Made it")</code></pre>
+<p>True or False: the sub-expression <code>c &gt; d</code> is evaluated while running this code.</p>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B (False)</p>
+<p class="why"><code>or</code> short-circuits: once <code>a &lt; b</code> evaluates to <code>True</code>, Python already knows the whole expression is <code>True</code> and never bothers evaluating <code>c &gt; d</code> at all. This matters in real code when the second operand has side effects or could raise an error (e.g. <code>x is not None and x.value &gt; 0</code>).</p>
+<p class="why"><strong>Why the other is wrong:</strong> A assumes Python evaluates every sub-expression regardless of the outcome, which is not how short-circuit evaluation works.</p>
+<p class="concept">Concept: short-circuit evaluation of <code>and</code>/<code>or</code></p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q3.</span> <code>and</code>/<code>or</code> in Python return one of their actual operand values, not necessarily <code>True</code>/<code>False</code>:</p>
+<pre><code>print(0 or "backup")
+print("" and "value")
+print("first" and "second")</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>True</code>, <code>False</code>, <code>True</code></li>
+<li><b>B.</b> <code>backup</code>, empty string, <code>second</code></li>
+<li><b>C.</b> <code>0</code>, empty string, <code>first</code></li>
+<li><b>D.</b> A TypeError, since <code>or</code>/<code>and</code> require boolean operands</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>or</code> returns the first truthy operand it finds (or the last operand if none are truthy): <code>0</code> is falsy so it moves on and returns <code>"backup"</code>. <code>and</code> returns the first falsy operand it finds (or the last if all are truthy): <code>""</code> is falsy, so it returns <code>""</code> immediately without even looking at <code>"value"</code>. In the third line, both operands are truthy, so <code>and</code> returns the <em>last</em> one evaluated, <code>"second"</code>.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A wrongly assumes <code>and</code>/<code>or</code> always coerce to real booleans; C picks the wrong operand in each case; D is wrong because <code>and</code>/<code>or</code> work with any objects via their truthiness, not just literal booleans.</p>
+<p class="concept">Concept: <code>and</code>/<code>or</code> return operand values, not necessarily True/False</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which is preferred in real Python programs?</p>
+<p class="qtext"><span class="qnum">Q4.</span> PDA explicitly recommends a particular idiom for checking whether a variable is <code>None</code>. Which is it?</p>
+<ol class="opts">
+<li><b>A.</b> <code>if x == None:</code></li>
+<li><b>B.</b> <code>if x is None:</code></li>
+<li><b>C.</b> <code>if not x:</code></li>
+<li><b>D.</b> <code>if x.__eq__(None):</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Since there is only ever one <code>None</code> object in a running Python process, checking identity with <code>is</code> is both faster and semantically clearer ("is this literally the None object") than checking equality. PDA states this directly: "A common use of is and is not is to check if a variable is None."</p>
+<p class="why"><strong>Why the others are wrong:</strong></p>
+<ul class="wrong-list">
+<li><b>A</b> works in practice (since no other object equals None), but it's considered non-idiomatic and can behave unexpectedly for custom objects that override <code>__eq__</code>.</li>
+<li><b>C</b> is wrong/dangerously broad — it's also True for <code>0</code>, <code>""</code>, <code>[]</code>, etc., not just <code>None</code>.</li>
+<li><b>D</b> works but is needlessly low-level/unidiomatic compared to <code>is None</code>.</li>
+</ul>
+<p class="concept">Concept: idiomatic None-checking with <code>is</code></p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q5.</span> From Lab 1's blacklist example:</p>
+<pre><code>blacklisted_companies = ["ABC Corp", "XYZ Ltd", "Fraud Inc"]
+company_name = "Safe Enterprises"
+print(company_name not in blacklisted_companies)</code></pre>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False</li>
+<li><b>C.</b> None</li>
+<li><b>D.</b> Raises a ValueError since "Safe Enterprises" isn't in the list</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A</p>
+<p class="why"><code>in</code>/<code>not in</code> simply test membership and always return a boolean — they never raise an error just because an item is absent (that's exactly the point of using them for a membership test). Since <code>"Safe Enterprises"</code> is not one of the three blacklisted names, <code>not in</code> evaluates to True.</p>
+<p class="why"><strong>Why the others are wrong:</strong> B inverts the correct result; C is not a possible return type for this expression; D confuses membership testing with indexing/lookup operations (like <code>list.index()</code>) which *can* raise errors when an item is missing.</p>
+<p class="concept">Concept: membership operators (<code>in</code>/<code>not in</code>)</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q6.</span> Chained comparisons are a distinctive Python feature (PDA: <code>4 &gt; 3 &gt; 2 &gt; 1</code> is True). Predict the output:</p>
+<pre><code>print(5 == 5 == True)</code></pre>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False</li>
+<li><b>C.</b> 5</li>
+<li><b>D.</b> TypeError</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">A chained comparison <code>a == b == c</code> is evaluated as <code>(a == b) and (b == c)</code>, not as one flat comparison across all three values. Here that's <code>(5 == 5) and (5 == True)</code>. The first part is True, but <code>5 == True</code> is False (since <code>True</code> behaves like <code>1</code> when compared to numbers, and <code>5 != 1</code>). <code>True and False</code> is <code>False</code>.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A is the tempting-but-wrong assumption that once <code>5 == 5</code> is True, the whole chain is True; C misunderstands that comparisons always yield a boolean, never one of the compared values; D is wrong since comparing an int and a bool is perfectly legal (bool is a subtype of int).</p>
+<p class="concept">Concept: chained comparisons; bool as a subtype of int</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s5">
+<h2>5. Bitwise Operators</h2>
+<p class="chapter-intro">Sources: Lab 1 "Bitwise Operators" section (AND, OR, XOR, NOT with permission-flag and fraud-detection examples).</p>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q1.</span></p>
+<pre><code>transaction_status = 0b0001
+fraud_status = ~transaction_status
+print(fraud_status)</code></pre>
+<ol class="opts">
+<li><b>A.</b> 0</li>
+<li><b>B.</b> -2</li>
+<li><b>C.</b> 14</li>
+<li><b>D.</b> 1110 (binary)</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Python integers are conceptually infinite-precision two's-complement, so bitwise NOT follows the identity <code>~x = -(x + 1)</code>. For <code>x = 1</code>: <code>~1 = -(1 + 1) = -2</code>. This surprises many learners who expect a small positive flipped-bit-pattern result like in fixed-width languages.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A and C don't match the two's-complement identity; D shows a binary string, but <code>print()</code> of an int shows a decimal number, not its binary representation (you'd need <code>bin()</code> for that, and even then the result is negative and represented differently).</p>
+<p class="concept">Concept: bitwise NOT (~) on Python's arbitrary-precision integers</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q2.</span> Continuing directly from Q1 (masking the result to 4 bits, as the notebook does):</p>
+<pre><code>print(bin(fraud_status & 0b1111))</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>'0b0001'</code></li>
+<li><b>B.</b> <code>'0b1110'</code></li>
+<li><b>C.</b> <code>'-0b10'</code></li>
+<li><b>D.</b> <code>'0b1111'</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>fraud_status</code> is -2. ANDing with <code>0b1111</code> (15) masks it down to its lowest 4 bits in two's-complement form, which recovers the "flipped bits" representation: <code>1110</code> in binary (14 in decimal). This is exactly the technique the notebook uses to make a negative bitwise-NOT result readable as a 4-bit flag pattern.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A shows the original unflipped value; C shows the unmasked negative value in binary-ish form (which isn't how Python even displays negative binary); D would only occur if all 4 low bits were 1, which isn't the case here.</p>
+<p class="concept">Concept: masking negative results with <code>&amp;</code> to view low-order bits</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q3.</span></p>
+<pre><code>original_record = 0b1101
+tampered_record = 0b1001
+print(original_record ^ tampered_record)</code></pre>
+<ol class="opts">
+<li><b>A.</b> 0</li>
+<li><b>B.</b> 4</li>
+<li><b>C.</b> 13</li>
+<li><b>D.</b> 9</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">XOR sets a bit only where the two operands differ: <code>1101 ^ 1001 = 0100</code> (binary), which is 4 in decimal. This is exactly why the notebook uses XOR to detect tampering — a nonzero XOR result means the two records differ somewhere.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A would mean the records are identical, which they aren't; C and D are the original operand values themselves, not the result of XOR-ing them.</p>
+<p class="concept">Concept: bitwise XOR (^) for detecting differences</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q4.</span></p>
+<pre><code>user_permission = 0b01
+user_permission |= 0b10
+print(bin(user_permission))</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>'0b01'</code></li>
+<li><b>B.</b> <code>'0b10'</code></li>
+<li><b>C.</b> <code>'0b11'</code></li>
+<li><b>D.</b> <code>'0b00'</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: C</p>
+<p class="why"><code>|=</code> ORs the two bit patterns together and reassigns the result: <code>01 | 10 = 11</code>. This is the standard idiom for "granting an additional permission flag" while keeping the ones already set — bit 0 (read) stays set and bit 1 (write) gets added.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A and B each show only one of the two flags, not their union; D would mean both permissions were revoked, the opposite of what OR does.</p>
+<p class="concept">Concept: bitwise OR (|) for combining/granting flags</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s6">
+<h2>6. Type Casting</h2>
+<p class="chapter-intro">Sources: PDA "Type casting"; Lab 1 "Type Casting in Python" (int/float/str/bool casting with audit values).</p>
+
+<div class="q">
+<p class="qtype">Unexpected Behavior</p>
+<p class="qtext"><span class="qnum">Q1.</span> A classic Python trap:</p>
+<pre><code>audit_flag = "False"
+print(bool(audit_flag))</code></pre>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False</li>
+<li><b>C.</b> Raises a ValueError</li>
+<li><b>D.</b> None</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A</p>
+<p class="why"><code>bool()</code> applied to a string does not parse the string's contents — it only checks whether the string is empty or not. Since <code>"False"</code> is a non-empty string (5 characters), it is truthy, so <code>bool("False")</code> is <code>True</code>. This surprises many learners who expect Python to somehow "understand" the word False.</p>
+<p class="why"><strong>Why the others are wrong:</strong> B is the intuitive-but-wrong answer many learners pick, mistakenly assuming the string's textual content is evaluated; C confuses this with something like <code>int("abc")</code>, which *does* raise ValueError because int-parsing actually inspects the text; D is not a possible outcome of <code>bool()</code>.</p>
+<p class="concept">Concept: bool() on strings tests emptiness, not textual content</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q2.</span> From Lab 1's audit log ID conversion:</p>
+<pre><code>log_entry_id = "10123"
+log_entry_id_int = int(log_entry_id)
+print(type(log_entry_id), type(log_entry_id_int))</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>&lt;class 'int'&gt; &lt;class 'int'&gt;</code></li>
+<li><b>B.</b> <code>&lt;class 'str'&gt; &lt;class 'int'&gt;</code></li>
+<li><b>C.</b> <code>&lt;class 'str'&gt; &lt;class 'str'&gt;</code></li>
+<li><b>D.</b> <code>&lt;class 'int'&gt; &lt;class 'str'&gt;</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>int()</code> returns a *new* object; it never changes the type of the original variable. <code>log_entry_id</code> remains a <code>str</code> forever (strings are immutable), while <code>log_entry_id_int</code> is a freshly created <code>int</code>.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A and D both assume casting mutates the original variable's type in place, which never happens in Python; C ignores that <code>int()</code> actually performed a conversion.</p>
+<p class="concept">Concept: type casting produces a new object; originals are unaffected</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Unexpected Behavior</p>
+<p class="qtext"><span class="qnum">Q3.</span></p>
+<pre><code>fval = float("3.9")
+print(int(fval))</code></pre>
+<ol class="opts">
+<li><b>A.</b> 4 (rounds to nearest)</li>
+<li><b>B.</b> 3 (truncates toward zero)</li>
+<li><b>C.</b> 3.9</li>
+<li><b>D.</b> Raises a ValueError since 3.9 isn't a whole number</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>int()</code> on a float always <em>truncates</em> the fractional part (rounds toward zero) — it never rounds to the nearest integer. <code>int(3.9)</code> is 3, and, notably, <code>int(-3.9)</code> would be -3 (not -4), confirming it truncates toward zero rather than flooring.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A confuses <code>int()</code> with <code>round()</code>; C forgets that <code>int()</code> converts the type, it doesn't just format the number; D is wrong — <code>int()</code> happily discards fractional data from a float without complaint.</p>
+<p class="concept">Concept: int() truncates floats rather than rounding</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which raises an error?</p>
+<p class="qtext"><span class="qnum">Q4.</span> Which of the following raises a <code>ValueError</code>?</p>
+<ol class="opts">
+<li><b>A.</b> <code>float("12.5")</code></li>
+<li><b>B.</b> <code>int("12.5")</code></li>
+<li><b>C.</b> <code>int(12.5)</code></li>
+<li><b>D.</b> <code>bool("0")</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>int()</code> parsing a string requires the string to look like a valid integer literal (optionally with a sign) — it cannot parse a decimal point, so <code>int("12.5")</code> raises <code>ValueError: invalid literal for int() with base 10: '12.5'</code>. To convert a numeric string with a decimal point, you must go through <code>float()</code> first, e.g. <code>int(float("12.5"))</code>.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A works fine since <code>float()</code> parsing does accept decimal points; C is casting an already-numeric float (not a string) and simply truncates to 12, no parsing involved; D returns True (the string "0" is non-empty, hence truthy) — a good companion trap to Q1, but not an error.</p>
+<p class="concept">Concept: string-to-number parsing rules differ between int() and float()</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s7">
+<h2>7. Strings</h2>
+<p class="chapter-intro">Sources: PDA "Strings", "Bytes and Unicode"; Lab 2 String Operations/Indexing/Slicing/join() sections.</p>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q1.</span></p>
+<pre><code>audit_log2 = "Budget_done"
+print(audit_log2[6:7])
+print(audit_log2[-1])</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>'d'</code> then <code>'e'</code></li>
+<li><b>B.</b> <code>'_'</code> then <code>'e'</code></li>
+<li><b>C.</b> <code>'g'</code> then <code>'n'</code></li>
+<li><b>D.</b> <code>'_d'</code> then <code>'e'</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Indexing "Budget_done": B(0) u(1) d(2) g(3) e(4) t(5) _(6) d(7) o(8) n(9) e(10). <code>[6:7]</code> selects just index 6, the underscore. Negative index -1 always refers to the last character, 'e'.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A and C misplace the index count; D wrongly includes index 7 as well, forgetting that slice stop is exclusive.</p>
+<p class="concept">Concept: zero-based indexing and half-open slice ranges</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which raises an error?</p>
+<p class="qtext"><span class="qnum">Q2.</span> Which of the following raises a <code>TypeError</code>?</p>
+<ol class="opts">
+<li><b>A.</b> <code>s = "hello"; s = "H" + s[1:]</code></li>
+<li><b>B.</b> <code>s = "hello"; s[0] = "H"</code></li>
+<li><b>C.</b> <code>s = "hello"; s2 = s.replace("h", "H")</code></li>
+<li><b>D.</b> <code>s = "hello"; chars = list(s)</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Strings are immutable in Python — item assignment (mutating a character in place) is not supported: <code>TypeError: 'str' object does not support item assignment</code>. To "change" a string you must build and assign a new one, as options A and C both correctly do.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A rebuilds an entirely new string via concatenation and reassigns the name — valid; C uses <code>.replace()</code>, which returns a new string, also valid; D just converts the string into a list of its characters, which is fine.</p>
+<p class="concept">Concept: string immutability</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q3.</span> From Lab 2:</p>
+<pre><code>txt = ",,,,,rrttgg.....banana...rrr,,,"
+x = txt.strip(",")
+print(x)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>'rrttgg.....banana...rrr'</code></li>
+<li><b>B.</b> <code>'banana'</code></li>
+<li><b>C.</b> <code>'rrttggbananarrr'</code></li>
+<li><b>D.</b> <code>''</code> (empty string)</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A</p>
+<p class="why"><code>.strip(",")</code> removes only comma characters, and only from the very start and end of the string — it does not touch dots or letters, and it does not touch anything in the *middle* of the string (even more commas or dots there would be left alone). It stops trimming from each end as soon as it hits a character that isn't in the given set.</p>
+<p class="why"><strong>Why the others are wrong:</strong> B wrongly assumes <code>strip</code> extracts a "core" meaningful substring; C wrongly assumes strip removes all punctuation everywhere in the string, not just at the edges; D wrongly assumes the whole string gets stripped away.</p>
+<p class="concept">Concept: str.strip(chars) removes only the given characters, only from both ends</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">True or False</p>
+<p class="qtext"><span class="qnum">Q4.</span></p>
+<pre><code>audit_log1 = "   Budget allocation audit completed successfully!   "
+cleaned = audit_log1.strip()</code></pre>
+<p>True or False: after this line runs, <code>audit_log1</code> itself no longer has leading/trailing spaces.</p>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B (False)</p>
+<p class="why"><code>.strip()</code> (like all string methods) returns a brand-new string; it can never modify the original in place, because strings are immutable. <code>audit_log1</code> still has its original leading/trailing spaces; only <code>cleaned</code> holds the trimmed version.</p>
+<p class="why"><strong>Why the other is wrong:</strong> A wrongly assumes string methods mutate the receiver, as list methods like <code>.append()</code> do — but strings never support in-place mutation.</p>
+<p class="concept">Concept: string methods always return new strings, never mutate in place</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q5.</span> f-string formatting (PDA):</p>
+<pre><code>amount = 10
+rate = 88.46
+currency = "Pesos"
+print(f"{amount} {currency} is worth US${amount / rate:.2f}")</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>10 Pesos is worth US$0.11</code></li>
+<li><b>B.</b> <code>10 Pesos is worth US$0.1129</code></li>
+<li><b>C.</b> <code>{amount} {currency} is worth US${amount / rate:.2f}</code> (literal, unsubstituted)</li>
+<li><b>D.</b> Raises a SyntaxError because expressions can't be nested inside f-strings</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A</p>
+<p class="why">f-strings evaluate any expression inside <code>{}</code> and substitute its value; the optional <code>:.2f</code> format spec after a colon formats that value as a fixed-point number with 2 decimal places. <code>10 / 88.46 ≈ 0.1130...</code>, which rounds to <code>0.11</code>.</p>
+<p class="why"><strong>Why the others are wrong:</strong> B ignores the <code>:.2f</code> formatting directive and shows unrounded precision; C describes what would happen if the <code>f</code> prefix were missing (a plain string with literal braces); D is wrong — nested expressions, including arithmetic and format specs, are exactly what f-strings are designed for.</p>
+<p class="concept">Concept: f-string expression substitution and format specifiers</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q6.</span> Raw strings (PDA):</p>
+<pre><code>s = r"this\has\no\special\characters"
+print(len(s))</code></pre>
+<ol class="opts">
+<li><b>A.</b> 24 (the backslashes are counted as literal characters)</li>
+<li><b>B.</b> A shorter number, because <code>\h</code>, <code>\n</code>, etc. are treated as escape sequences</li>
+<li><b>C.</b> Raises a SyntaxError due to invalid escape sequences</li>
+<li><b>D.</b> 0</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A</p>
+<p class="why">The <code>r</code> prefix makes this a raw string literal: backslashes are treated as ordinary literal characters, not as the start of escape sequences. So every character you see, including all five backslashes, is counted by <code>len()</code>. (Counting the literal text: "this\has\no\special\characters" is 30 characters including the backslashes — the exact count isn't the point here so much as recognizing backslashes are preserved literally rather than consumed as escapes.)</p>
+<p class="why"><strong>Why the others are wrong:</strong> B assumes normal escape-sequence processing happens, which raw strings explicitly disable; C is wrong because raw strings are specifically designed to tolerate backslash sequences that would otherwise need escaping; D is nonsensical for a clearly non-empty string.</p>
+<p class="concept">Concept: raw string literals (r"...") disable backslash escaping</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Identify the Subtle Bug</p>
+<p class="qtext"><span class="qnum">Q7.</span> From Lab 2's join() exercises:</p>
+<pre><code>a = 'audit'
+s = ' '.join(a)
+print(s)</code></pre>
+<p>A developer expected this to just wrap the word "audit" with surrounding spaces, like <code>' audit '</code>. What does it actually print, and why?</p>
+<ol class="opts">
+<li><b>A.</b> <code>' audit '</code> — spaces added around the word</li>
+<li><b>B.</b> <code>'a u d i t'</code> — a string is an iterable of its individual characters, so join() inserts a space between each character</li>
+<li><b>C.</b> <code>'audit'</code> — unchanged</li>
+<li><b>D.</b> TypeError, because join() requires a list, not a string</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>str.join(iterable)</code> inserts the separator string between every element yielded by the given iterable. Because a plain string is itself iterable — over its individual characters — passing the whole word <code>"audit"</code> to <code>join()</code> iterates character-by-character, giving <code>'a u d i t'</code>. Learners often confuse "iterable of things to join" with "the whole string to wrap," but join() has no idea it's supposed to treat "audit" as one atomic unit unless it's wrapped in a list, e.g. <code>' '.join(['audit'])</code> → <code>'audit'</code>.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A misunderstands what join() does entirely (it inserts separators *between* elements, it doesn't add a prefix/suffix); C ignores that join() does insert something; D is wrong — strings are valid iterables and <code>join()</code> happily accepts them, which is exactly the source of this surprising behavior.</p>
+<p class="concept">Concept: strings are iterables of characters; str.join() iterates its argument</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which statement is true?</p>
+<p class="qtext"><span class="qnum">Q8.</span></p>
+<pre><code>a = "Hello world"
+print(a.startswith(("hi", "Hello", "H")))</code></pre>
+<ol class="opts">
+<li><b>A.</b> Raises a TypeError — startswith() only accepts a single string, not a tuple</li>
+<li><b>B.</b> False, because the string doesn't start with the exact tuple</li>
+<li><b>C.</b> True — startswith() accepts a tuple of prefixes and returns True if any one matches</li>
+<li><b>D.</b> True, but only because "H" happens to be the first character</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: C</p>
+<p class="why"><code>str.startswith()</code> (and <code>endswith()</code>) accept either a single string or a tuple of candidate strings, returning True if the string starts with <em>any</em> of them. Here, <code>"Hello"</code> matches, so the result is True.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A is factually wrong about the method's signature; B misunderstands how the tuple argument is checked (it's "any of these", not "exactly this tuple as a literal prefix"); D is a coincidentally-true-sounding distractor — the match is really on "Hello" (or "H"), and the mechanism (checking each candidate) is what matters, not which one "happens" to match first.</p>
+<p class="concept">Concept: str.startswith()/endswith() accepting a tuple of options</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q9.</span> PDA's triple-quoted multiline string example:</p>
+<pre><code>c = """
+This is a longer string that
+spans multiple lines
+"""
+print(c.count("\n"))</code></pre>
+<ol class="opts">
+<li><b>A.</b> 2</li>
+<li><b>B.</b> 3</li>
+<li><b>C.</b> 4</li>
+<li><b>D.</b> 0, because triple-quoted strings don't contain real newline characters</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">A triple-quoted string literally includes every line break you type inside it, as real <code>\n</code> characters. This literal has a newline right after the opening <code>"""</code>, one after "lines that", one after "spans multiple lines" — three newline characters total (the string actually spans four lines of text, separated by three newlines).</p>
+<p class="why"><strong>Why the others are wrong:</strong> A undercounts by one; C overcounts; D is a serious misconception — triple-quoted strings are exactly how you embed *real* multi-line text with actual newline characters in Python.</p>
+<p class="concept">Concept: triple-quoted strings preserve literal newlines</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s8">
+<h2>8. Control Flow</h2>
+<p class="chapter-intro">Sources: PDA "Control Flow" (if/elif/else, for, while, pass, range); Lab 1 modulo-based examples.</p>
+
+<div class="q">
+<p class="qtype">Which is NOT printed?</p>
+<p class="qtext"><span class="qnum">Q1.</span> PDA's nested-loop example:</p>
+<pre><code>for i in range(4):
+    for j in range(4):
+        if j > i:
+            break
+        print((i, j))</code></pre>
+<p>Which of the following pairs is <strong>never</strong> printed?</p>
+<ol class="opts">
+<li><b>A.</b> (2, 2)</li>
+<li><b>B.</b> (3, 3)</li>
+<li><b>C.</b> (0, 1)</li>
+<li><b>D.</b> (1, 0)</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: C</p>
+<p class="why"><code>break</code> only exits the innermost loop, so the outer <code>i</code> loop keeps running across all its iterations — but within each <code>i</code>, the inner loop stops as soon as <code>j &gt; i</code>. When <code>i = 0</code>: <code>j = 0</code> passes the check and prints <code>(0, 0)</code>, but at <code>j = 1</code>, <code>1 &gt; 0</code> is True, so <code>break</code> fires *before* the print statement executes — <code>(0, 1)</code> is never printed. The full printed sequence is (0,0), (1,0), (1,1), (2,0), (2,1), (2,2), (3,0), (3,1), (3,2), (3,3).</p>
+<p class="why"><strong>Why the others are wrong:</strong> A, B, and D are all pairs where <code>j &lt;= i</code>, so they do get printed before the break condition triggers on the next value of j.</p>
+<p class="concept">Concept: break only terminates the innermost loop</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Identify the Subtle Bug</p>
+<p class="qtext"><span class="qnum">Q2.</span> A developer adapts PDA's "skip None values and sum the rest" example, but introduces a bug:</p>
+<pre><code>sequence = [1, 2, None, 4, None, 5]
+total = 0
+for value in sequence:
+    if value is None:
+        break
+    total += value
+print(total)</code></pre>
+<p>The intent was to sum every non-None value (expected: 1+2+4+5=12). What does this buggy code actually print, and why?</p>
+<ol class="opts">
+<li><b>A.</b> 12 — it works as intended</li>
+<li><b>B.</b> 3 — using <code>break</code> instead of <code>continue</code> exits the loop entirely the first time a None is found, so only 1 and 2 ever get added</li>
+<li><b>C.</b> 0 — the loop never executes because of the None check</li>
+<li><b>D.</b> TypeError, because you can't add None to an integer</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>break</code> immediately terminates the whole <code>for</code> loop, not just the current iteration. As soon as the loop reaches the first <code>None</code> (right after 1 and 2 have already been added, giving total=3), it exits entirely — the 4 and 5 that come later in the list are never even looked at. The correct code (as PDA actually writes it) uses <code>continue</code> here, which skips just that one iteration and lets the loop carry on to the remaining elements.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A is what you'd get if <code>continue</code> were used correctly; C wrongly assumes the loop never runs at all; D is wrong because the buggy code exits the loop *before* ever trying to add <code>None</code> to <code>total</code> — the addition of None simply never happens (which is precisely why the bug goes unnoticed rather than crashing loudly).</p>
+<p class="concept">Concept: break vs. continue</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q3.</span> PDA's <code>while</code> loop example:</p>
+<pre><code>x = 256
+total = 0
+while x > 0:
+    if total > 500:
+        break
+    total += x
+    x = x // 2
+print(total)</code></pre>
+<ol class="opts">
+<li><b>A.</b> 496</li>
+<li><b>B.</b> 500</li>
+<li><b>C.</b> 504</li>
+<li><b>D.</b> 511</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: C</p>
+<p class="why">Tracing through: total accumulates 256, 128, 64, 32, 16, 8 — running totals: 256, 384, 448, 480, 496, 504. The <code>total &gt; 500</code> check happens at the *top* of each pass, before adding — so even though total reaches 504 (which is over 500), that check already passed for that iteration; the break only fires on the *next* pass once total is already 504, so the loop exits with total frozen at 504 (before x=4 is ever added).</p>
+<p class="why"><strong>Why the others are wrong:</strong> A stops one step too early; B assumes an exact threshold cutoff that doesn't correspond to any actual accumulated value; D would require one more doubling step to accumulate, which never happens because the break fires first.</p>
+<p class="concept">Concept: while-loop condition checks and break placement/timing</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q4.</span></p>
+<pre><code>print(list(range(5, 0, -1)))</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>[5, 4, 3, 2, 1]</code></li>
+<li><b>B.</b> <code>[5, 4, 3, 2, 1, 0]</code></li>
+<li><b>C.</b> <code>[]</code> (empty, since start &gt; stop)</li>
+<li><b>D.</b> <code>[0, 1, 2, 3, 4, 5]</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A</p>
+<p class="why">With a negative step, <code>range</code> counts <em>down</em> from <code>start</code> and stops before reaching (but not including) <code>stop</code>. Starting at 5 and stepping by -1, it produces 5, 4, 3, 2, 1, then stops because the next value (0) is not greater than the stop value of 0 — 0 itself is excluded.</p>
+<p class="why"><strong>Why the others are wrong:</strong> B wrongly includes the stop value 0; C wrongly assumes range can't count downward (it just requires a negative step to do so); D reverses the direction entirely.</p>
+<p class="concept">Concept: range() with a negative step</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">True or False</p>
+<p class="qtext"><span class="qnum">Q5.</span> True or False: the <code>pass</code> statement causes Python to skip executing the rest of that code block, similar to how <code>continue</code> skips the rest of a loop iteration.</p>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B (False)</p>
+<p class="why"><code>pass</code> is a genuine no-op: it does absolutely nothing and has no special skipping behavior. It exists purely because Python's syntax requires every colon-headed block to contain at least one statement — <code>pass</code> is just a placeholder satisfying that requirement when no action is (yet) needed. It's unrelated to <code>continue</code> or <code>break</code>.</p>
+<p class="why"><strong>Why the other is wrong:</strong> A confuses <code>pass</code> (do nothing, block "runs" trivially) with control-flow statements like <code>continue</code> that actually alter execution order.</p>
+<p class="concept">Concept: pass as a syntactic no-op placeholder</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">True or False</p>
+<p class="qtext"><span class="qnum">Q6.</span> True or False: in an <code>if</code>/<code>elif</code>/<code>elif</code>/<code>else</code> chain, once one branch's condition evaluates to True and its block executes, Python still checks the remaining <code>elif</code> conditions (though it won't run their blocks).</p>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B (False)</p>
+<p class="why">As soon as one condition in the chain is found True, its block runs and the <em>entire</em> chain is exited immediately — none of the remaining <code>elif</code> conditions are even evaluated, let alone their blocks run. PDA states this directly: "If any of the conditions are True, no further elif or else blocks will be reached."</p>
+<p class="why"><strong>Why the other is wrong:</strong> A wrongly assumes Python evaluates every condition for logging/completeness purposes — it does not; this is a genuine short-circuit at the control-flow level.</p>
+<p class="concept">Concept: if/elif/else short-circuits after the first True branch</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which raises an error?</p>
+<p class="qtext"><span class="qnum">Q7.</span> Which of the following raises a <code>SyntaxError</code>?</p>
+<ol class="opts">
+<li><b>A.</b> <code>transaction_id = 123457</code><br><code>if transaction_id % 2 == 0:</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;print("Even")</code></li>
+<li><b>B.</b> <code>if transaction_id % 2 = 0:</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;print("Even")</code></li>
+<li><b>C.</b> <code>if (transaction_id % 2) == 0:</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;print("Even")</code></li>
+<li><b>D.</b> <code>if not transaction_id % 2:</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;print("Even")</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">A single <code>=</code> is the assignment operator, not comparison — writing <code>if x = 0:</code> is invalid syntax in Python (unlike some languages, Python deliberately disallows assignment inside a plain condition to prevent exactly this kind of typo bug). You must use <code>==</code> for equality comparison.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A and C both correctly use <code>==</code>; D is a valid (if less obvious) idiom, since <code>transaction_id % 2</code> is 0 (falsy) for even numbers, so <code>not (...)</code> is True precisely when the number is even.</p>
+<p class="concept">Concept: assignment (=) vs. equality comparison (==)</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s9">
+<h2>9. Lists</h2>
+<p class="chapter-intro">Sources: PDA "List" (adding/removing, concatenation, sorting, slicing); Lab 2 List Operations (append, insert, pop, remove, indexing/slicing).</p>
+
+<div class="q">
+<p class="qtype">Which object is modified?</p>
+<p class="qtext"><span class="qnum">Q1.</span></p>
+<pre><code>list1 = [1, 2, 3]
+list2 = list1
+list3 = list1.copy()
+list1.append(4)
+print(list2)
+print(list3)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>[1, 2, 3, 4]</code> then <code>[1, 2, 3, 4]</code></li>
+<li><b>B.</b> <code>[1, 2, 3]</code> then <code>[1, 2, 3]</code></li>
+<li><b>C.</b> <code>[1, 2, 3, 4]</code> then <code>[1, 2, 3]</code></li>
+<li><b>D.</b> <code>[1, 2, 3]</code> then <code>[1, 2, 3, 4]</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: C</p>
+<p class="why"><code>list2 = list1</code> makes <code>list2</code> an alias for the same object as <code>list1</code>, so any in-place mutation (like <code>append</code>) is visible through <code>list2</code> too. <code>list3 = list1.copy()</code>, however, creates an independent new list with the same contents *at the time of copying*; later mutations to <code>list1</code> have no effect on <code>list3</code>.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A wrongly assumes <code>.copy()</code> creates another alias rather than an independent object; B wrongly assumes nothing was mutated in place; D swaps which variable is the alias and which is the independent copy.</p>
+<p class="concept">Concept: aliasing (=) vs. shallow copying (.copy())</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which implementation is correct?</p>
+<p class="qtext"><span class="qnum">Q2.</span> You want to add several elements — 7, 8, and the tuple <code>(2, 3)</code> — to an existing list <code>x = [4, None, "foo"]</code>, ending up with a single flat list <code>[4, None, 'foo', 7, 8, (2, 3)]</code>. Which call achieves this?</p>
+<ol class="opts">
+<li><b>A.</b> <code>x.append([7, 8, (2, 3)])</code></li>
+<li><b>B.</b> <code>x.extend([7, 8, (2, 3)])</code></li>
+<li><b>C.</b> <code>x = x.append([7, 8, (2, 3)])</code></li>
+<li><b>D.</b> <code>x + [7, 8, (2, 3)]</code> (with no assignment)</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>extend()</code> takes an iterable and adds each of its elements individually to the list, producing exactly <code>[4, None, 'foo', 7, 8, (2, 3)]</code>.</p>
+<p class="why"><strong>Why the others are wrong:</strong></p>
+<ul class="wrong-list">
+<li><b>A</b> appends the *entire list* <code>[7, 8, (2, 3)]</code> as one single nested element, giving <code>[4, None, 'foo', [7, 8, (2, 3)]]</code> — not flat.</li>
+<li><b>C</b> compounds the mistake: <code>list.append()</code> returns <code>None</code> (it mutates in place rather than returning a new list), so this would overwrite <code>x</code> with <code>None</code> entirely.</li>
+<li><b>D</b> would compute the concatenated list but throw it away immediately since the result isn't assigned to anything — <code>x</code> itself remains unchanged.</li>
+</ul>
+<p class="concept">Concept: append() vs. extend(); methods that return None vs. new values</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">True or False</p>
+<p class="qtext"><span class="qnum">Q3.</span></p>
+<pre><code>a = [7, 2, 5, 1, 3]
+b = sorted(a)
+a.sort()
+print(a is b)</code></pre>
+<p>True or False: this prints <code>True</code>.</p>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B (False)</p>
+<p class="why"><code>sorted(a)</code> returns a brand-new list (<code>b</code>), leaving <code>a</code> untouched at that point. <code>a.sort()</code> then sorts <code>a</code> in place and returns <code>None</code> (its return value is simply discarded here, not assigned). So after both lines, <code>a</code> and <code>b</code> happen to hold *equal* contents (<code>[1, 2, 3, 5, 7]</code> each), but they remain two distinct list objects — <code>a == b</code> is True, but <code>a is b</code> is False.</p>
+<p class="why"><strong>Why the other is wrong:</strong> A confuses "ends up with the same values" with "is literally the same object" — a repeat of the identity-vs-equality theme.</p>
+<p class="concept">Concept: sorted() (returns new list) vs. list.sort() (in-place, returns None)</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Choose the Best Explanation</p>
+<p class="qtext"><span class="qnum">Q4.</span> PDA's example:</p>
+<pre><code>b = ["saw", "small", "He", "foxes", "six"]
+b.sort(key=len)
+print(b)</code></pre>
+<p>This prints <code>['He', 'saw', 'six', 'small', 'foxes']</code>. Why does <code>"saw"</code> appear before <code>"six"</code>, even though both have length 3?</p>
+<ol class="opts">
+<li><b>A.</b> Python sorts equal-length strings alphabetically as a tiebreaker</li>
+<li><b>B.</b> Python's sort is stable: elements that compare equal under the sort key keep their original relative order, and "saw" appeared before "six" in the input list</li>
+<li><b>C.</b> It's essentially random which one comes first</li>
+<li><b>D.</b> "saw" is considered "less than" "six" because 's' &lt; 's' is False so Python falls back to length</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Python's built-in sorts (<code>list.sort()</code> and <code>sorted()</code>) are guaranteed <em>stable</em>: when two elements produce the same sort key (here, the same length, 3), their relative order from the original list is preserved rather than being decided by any secondary criterion. In the input, "saw" comes before "six", so that order is kept.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A invents a tiebreaker Python doesn't actually apply (the sort key here is purely <code>len</code>, nothing else is consulted); C is wrong — the behavior is fully deterministic, guaranteed by the stability property; D invents a nonsensical secondary comparison that Python's <code>key=len</code> sort never performs (it never compares the strings themselves at all, only their lengths).</p>
+<p class="concept">Concept: stable sorting with a key function</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q5.</span> From Lab 2's slice-assignment example:</p>
+<pre><code>p = [10, 20, 30, 40, 50, 60, 70, 80]
+p[3:3] = ["a", "b", "c"]
+print(p)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>[10, 20, 30, 'a', 'b', 'c', 40, 50, 60, 70, 80]</code></li>
+<li><b>B.</b> <code>[10, 20, 30, ['a', 'b', 'c'], 40, 50, 60, 70, 80]</code></li>
+<li><b>C.</b> <code>['a', 'b', 'c']</code> (the whole list is replaced)</li>
+<li><b>D.</b> Raises an IndexError since the slice has zero width</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A</p>
+<p class="why">Assigning to a slice replaces exactly the elements that slice selects with the elements of the right-hand sequence. <code>p[3:3]</code> selects an *empty* range (zero elements, right at position 3), so this assignment doesn't overwrite anything — it purely <em>inserts</em> the three new elements at that position, splicing them in without removing any existing element.</p>
+<p class="why"><strong>Why the others are wrong:</strong> B confuses slice assignment with plain indexed assignment (<code>p[3] = [...]</code>, which would nest a list at one position); C wildly overreaches the scope of the slice; D is wrong — a zero-width slice is completely valid for insertion, and no error occurs.</p>
+<p class="concept">Concept: slice assignment as insertion (when the slice is empty)</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q6.</span> From Lab 2:</p>
+<pre><code>Marks = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 98, 65]
+print(Marks[2:-2])</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>[30, 40, 50, 60, 70, 80, 90, 100]</code></li>
+<li><b>B.</b> <code>[30, 40, 50, 60, 70, 80, 90, 100, 98]</code></li>
+<li><b>C.</b> <code>[10, 20, 30, 40, 50, 60, 70, 80, 90, 100]</code></li>
+<li><b>D.</b> Raises an IndexError because you can't mix positive and negative indices in one slice</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A</p>
+<p class="why">The list has 12 elements (indices 0–11). <code>Marks[2:-2]</code> starts at index 2 and stops before index -2 (which is index 10). That selects indices 2 through 9 inclusive: <code>[30, 40, 50, 60, 70, 80, 90, 100]</code> — dropping the first two (10, 20) and the last two (98, 65).</p>
+<p class="why"><strong>Why the others are wrong:</strong> B includes one element too many (98 is at index 10, which is excluded since the stop index is exclusive); C forgets to drop the last two elements; D is wrong — mixing positive start and negative stop indices in a slice is completely standard and well-defined.</p>
+<p class="concept">Concept: mixing positive and negative indices in slicing</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which is more Pythonic / efficient?</p>
+<p class="qtext"><span class="qnum">Q7.</span> PDA contrasts two ways of building up a big list from a list of lists:</p>
+<pre><code># Version 1
+everything = []
+for chunk in list_of_lists:
+    everything.extend(chunk)
+
+# Version 2
+everything = []
+for chunk in list_of_lists:
+    everything = everything + chunk</code></pre>
+<p>Which is preferred, and why?</p>
+<ol class="opts">
+<li><b>A.</b> Version 2 — using <code>+</code> is more explicit about creating a new combined list each time</li>
+<li><b>B.</b> Version 1 — <code>extend()</code> mutates the existing list in place, avoiding the cost of allocating and copying a brand-new list on every single loop iteration</li>
+<li><b>C.</b> They perform identically; both mutate <code>everything</code> in place</li>
+<li><b>D.</b> Neither is correct — both raise a TypeError when <code>list_of_lists</code> contains more than one chunk</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Version 2's <code>everything + chunk</code> allocates an entirely new list and copies every existing element into it, every single iteration — for large accumulations this becomes quadratic-time and needlessly memory-churning. Version 1's <code>extend()</code> mutates the existing list object in place, appending only the new elements each time, which is far more efficient. PDA states this directly, calling extend "usually preferable."</p>
+<p class="why"><strong>Why the others are wrong:</strong> A mistakes "more explicit-looking" for "better" — the extra allocations are a real, measurable cost, not just cosmetic; C is factually wrong, <code>+</code> does not mutate in place, it creates a new object each time (that's exactly the performance problem); D is wrong — both versions are perfectly valid, correct Python that runs without error.</p>
+<p class="concept">Concept: list concatenation (+) vs. extend() — performance and mutation semantics</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">True or False</p>
+<p class="qtext"><span class="qnum">Q8.</span> True or False: <code>my_list.insert(0, x)</code> is just as fast as <code>my_list.append(x)</code>, since both simply add one new element to the list.</p>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B (False)</p>
+<p class="why">PDA explicitly notes that <code>insert</code> is computationally more expensive than <code>append</code>, because inserting anywhere except the end requires shifting every subsequent element over by one position internally to make room — an O(n) operation. <code>append</code> just places the new element after the current end, which is O(1) (amortized). For frequent insertions at the front, PDA recommends <code>collections.deque</code> instead, which is optimized for that pattern.</p>
+<p class="why"><strong>Why the other is wrong:</strong> A wrongly treats "adds one element" as the only factor in cost, ignoring the internal memory-shifting work that position matters for.</p>
+<p class="concept">Concept: performance characteristics of list.insert() vs. list.append()</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q9.</span> From Lab 2:</p>
+<pre><code>audit_log = ['Approved', 'Pending', 'Rejected', 'Pending']
+audit_log.remove('Pending')
+print(audit_log)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>['Approved', 'Rejected']</code> (both "Pending" entries removed)</li>
+<li><b>B.</b> <code>['Approved', 'Rejected', 'Pending']</code> (only the first "Pending" removed)</li>
+<li><b>C.</b> <code>['Approved', 'Pending', 'Rejected']</code></li>
+<li><b>D.</b> Raises a ValueError because "Pending" appears more than once</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>list.remove(value)</code> locates and removes only the <em>first</em> matching occurrence of the value, leaving any later duplicates untouched. The first "Pending" (at index 1) is removed, and the second one (originally at index 3) remains.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A wrongly assumes remove() clears every matching value; C removes the wrong occurrence; D is wrong — remove() only raises <code>ValueError</code> if the value is <em>not found at all</em>, not because of duplicates (duplicates are actually handled gracefully by only removing the first one).</p>
+<p class="concept">Concept: list.remove() removes only the first matching occurrence</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s10">
+<h2>10. Tuples</h2>
+<p class="chapter-intro">Sources: PDA "Tuple" (immutability, unpacking, *rest); Lab 2 Tuple Indexing/Slicing/Concatenation/comparison examples.</p>
+
+<div class="q">
+<p class="qtype">Unexpected Behavior</p>
+<p class="qtext"><span class="qnum">Q1.</span> PDA's tuple example:</p>
+<pre><code>tup = ("foo", [1, 2], True)
+tup[1].append(3)
+print(tup)</code></pre>
+<ol class="opts">
+<li><b>A.</b> Raises a TypeError — tuples are immutable</li>
+<li><b>B.</b> <code>('foo', [1, 2], True)</code> — unchanged, since tuples can't be modified</li>
+<li><b>C.</b> <code>('foo', [1, 2, 3], True)</code> — the nested list was mutated in place</li>
+<li><b>D.</b> <code>('foo', [1, 2, 3])</code> — the boolean is dropped</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: C</p>
+<p class="why">Tuple immutability only means you cannot reassign which object occupies a given slot (e.g. <code>tup[1] = something_else</code> would fail). It says nothing about the mutability of the objects <em>referenced</em> by that tuple. <code>tup[1]</code> is a list, and lists remain fully mutable — calling <code>.append()</code> on it mutates that list object in place; the tuple still refers to that same (now-changed) list.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A and B both wrongly assume tuple immutability extends recursively into whatever the tuple contains — it does not, since the tuple only "owns" references, not the referenced objects' own mutability; D invents an unrelated change (the tuple still has all three original elements).</p>
+<p class="concept">Concept: tuple immutability applies to slot bindings, not to mutable contents</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which raises an error?</p>
+<p class="qtext"><span class="qnum">Q2.</span></p>
+<pre><code>audit_checklist = ("Financial Review", "Compliance Check", "Risk Assessment")
+audit_checklist[1] = "Regulatory Compliance"</code></pre>
+<ol class="opts">
+<li><b>A.</b> This runs fine and updates the second element</li>
+<li><b>B.</b> Raises TypeError: 'tuple' object does not support item assignment</li>
+<li><b>C.</b> Raises IndexError: tuple index out of range</li>
+<li><b>D.</b> Raises AttributeError</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Tuples do not support item assignment at all, regardless of index validity — this is the defining characteristic of their immutability. Attempting <code>tup[i] = x</code> on any tuple always raises this specific TypeError.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A wrongly assumes tuples behave like lists; C misdiagnoses the error type — index 1 is perfectly valid for a 3-element tuple, the problem is the assignment itself, not the index; D invents an unrelated error type.</p>
+<p class="concept">Concept: tuples do not support item assignment</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q3.</span> From Lab 2:</p>
+<pre><code>a = (10, 50, 100)
+b = (1, 25, 200)
+c = (2, 3, 4)
+d = (a, b, c)
+print(min(d))</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>(10, 50, 100)</code></li>
+<li><b>B.</b> <code>(1, 25, 200)</code></li>
+<li><b>C.</b> <code>(2, 3, 4)</code></li>
+<li><b>D.</b> Raises a TypeError, since min() can't compare tuples</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Python compares tuples lexicographically: it compares their first elements first, and only looks further if there's a tie. Comparing the first elements of a, b, and c — 10, 1, and 2 respectively — the smallest is 1, which belongs to tuple <code>b</code>. So <code>b</code> is the minimum, regardless of what its later elements (25, 200) are.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A wrongly treats 10 as smaller than 1 (or ignores the comparison rule entirely); C picks the tuple with the smallest *later* elements rather than the smallest first element; D is wrong — tuples of comparable elements support ordering comparisons out of the box, element by element.</p>
+<p class="concept">Concept: lexicographic comparison of tuples</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which value changes / what type is it?</p>
+<p class="qtext"><span class="qnum">Q4.</span> PDA's "pluck values" unpacking example:</p>
+<pre><code>values = 1, 2, 3, 4, 5
+a, b, *rest = values
+print(rest)
+print(type(rest))</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>(3, 4, 5)</code> and <code>&lt;class 'tuple'&gt;</code></li>
+<li><b>B.</b> <code>[3, 4, 5]</code> and <code>&lt;class 'list'&gt;</code></li>
+<li><b>C.</b> <code>(3, 4, 5)</code> and <code>&lt;class 'list'&gt;</code></li>
+<li><b>D.</b> <code>3</code> and <code>&lt;class 'int'&gt;</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Even though <code>values</code> itself is a tuple, the "star" catch-all variable in an unpacking assignment (<code>*rest</code>) is always bound to a <em>list</em> containing whatever leftover elements weren't captured by the other names — regardless of the original sequence's type. This is a genuinely surprising detail many learners get wrong, assuming <code>rest</code> would also be a tuple since it came from unpacking a tuple.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A wrongly assumes the "leftover" type mirrors the source sequence's type; C has the right values but wrong type; D wrongly assumes only a single value is captured by rest.</p>
+<p class="concept">Concept: starred (*) unpacking always produces a list for the collected elements</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q5.</span> The Pythonic swap idiom (PDA):</p>
+<pre><code>a, b = 1, 2
+b, a = a, b
+print(a, b)</code></pre>
+<ol class="opts">
+<li><b>A.</b> 1 2</li>
+<li><b>B.</b> 2 1</li>
+<li><b>C.</b> 2 2</li>
+<li><b>D.</b> Raises a NameError</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">The right-hand side <code>a, b</code> is fully evaluated first, building the tuple <code>(1, 2)</code> from the *current* values of a and b, before any reassignment happens. That tuple is then unpacked into the left-hand names in order: <code>b</code> gets 1, <code>a</code> gets 2. So after this line, <code>a = 2</code> and <code>b = 1</code> — a clean swap without a temporary variable.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A assumes no swap occurred; C wrongly assumes some kind of overwrite-in-order bug (as you'd get in some other languages doing a naive sequential assignment without a temp variable); D is wrong — both names are already defined at this point.</p>
+<p class="concept">Concept: tuple packing/unpacking as an atomic swap idiom</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q6.</span></p>
+<pre><code>a = (1, 2, 2, 2, 3, 4, 2)
+print(a.count(2))</code></pre>
+<ol class="opts">
+<li><b>A.</b> 3</li>
+<li><b>B.</b> 4</li>
+<li><b>C.</b> 7</li>
+<li><b>D.</b> Raises AttributeError, since tuples have very few methods</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">The value 2 appears four times in the tuple. <code>.count(value)</code> is one of the very few methods tuples do have (alongside <code>.index()</code>), precisely because tuples are otherwise "light on instance methods" due to their immutability, as PDA notes.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A miscounts (missing one occurrence); C confuses the count of value 2 with the tuple's total length; D wrongly assumes tuples have no methods at all — they have a small but real set, including count().</p>
+<p class="concept">Concept: tuple.count()</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s11">
+<h2>11. Dictionaries</h2>
+<p class="chapter-intro">Sources: PDA "Dictionary" (get/pop defaults, setdefault, defaultdict, hashability); Lab 2 Dictionary creation/access/methods.</p>
+
+<div class="q">
+<p class="qtype">Which raises an error?</p>
+<p class="qtext"><span class="qnum">Q1.</span></p>
+<pre><code>d = {"a": 1}</code></pre>
+<p>Which of the following raises a <code>KeyError</code>?</p>
+<ol class="opts">
+<li><b>A.</b> <code>d.get("b")</code></li>
+<li><b>B.</b> <code>d.get("b", "default")</code></li>
+<li><b>C.</b> <code>d["b"]</code></li>
+<li><b>D.</b> <code>d.pop("b", "default")</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: C</p>
+<p class="why">Direct square-bracket indexing on a dict, <code>d["b"]</code>, raises <code>KeyError</code> if the key is absent — that's how it signals a missing key. <code>.get()</code> is specifically designed to avoid that: it returns <code>None</code> by default when the key is missing (A), or a supplied default value (B). <code>.pop(key, default)</code> similarly returns the default instead of raising when a default is supplied (D).</p>
+<p class="why"><strong>Why the others are wrong:</strong> A, B, and D are exactly the "safe" alternatives to indexing that PDA presents as the idiomatic way to provide default values instead of writing manual <code>if key in d</code> checks.</p>
+<p class="concept">Concept: dict indexing vs. get()/pop() with defaults</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q2.</span> PDA's setdefault example:</p>
+<pre><code>words = ["apple", "bat", "bar", "atom", "book"]
+by_letter = {}
+for word in words:
+    by_letter.setdefault(word[0], []).append(word)
+print(by_letter)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>{'a': ['apple', 'atom'], 'b': ['bat', 'bar', 'book']}</code></li>
+<li><b>B.</b> <code>{'a': 'apple', 'b': 'book'}</code> (only the last word per letter)</li>
+<li><b>C.</b> Raises a KeyError the first time a new first-letter is encountered</li>
+<li><b>D.</b> <code>{'apple': 'a', 'bat': 'b', 'bar': 'b', 'atom': 'a', 'book': 'b'}</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A</p>
+<p class="why"><code>setdefault(key, default)</code> looks up <code>key</code>; if it's missing, it inserts <code>key</code> with the given default value (here, a fresh empty list) *and* returns that value — all in one atomic step. Chaining <code>.append(word)</code> onto that return value then adds the word to whichever list (new or existing) is associated with that first letter.</p>
+<p class="why"><strong>Why the others are wrong:</strong> B and D misread which value is grouped under which key; C is exactly the bug this method is designed to prevent — <code>setdefault</code> never raises on a missing key, that's its whole purpose (contrast with plain indexing, which would raise KeyError here).</p>
+<p class="concept">Concept: dict.setdefault() for building groups without KeyError</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Identify the Subtle Bug</p>
+<p class="qtext"><span class="qnum">Q3.</span></p>
+<pre><code>counts = {}
+for word in ["a", "b", "a", "c", "b", "a"]:
+    counts[word] += 1
+print(counts)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>{'a': 3, 'b': 2, 'c': 1}</code></li>
+<li><b>B.</b> Raises a KeyError the very first time a new word is seen, because <code>counts[word]</code> doesn't exist yet to be incremented</li>
+<li><b>C.</b> <code>{'a': 1, 'b': 1, 'c': 1}</code></li>
+<li><b>D.</b> Silently does nothing since dicts can't hold integer values incremented this way</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>counts[word] += 1</code> is shorthand for <code>counts[word] = counts[word] + 1</code>, which requires *reading* <code>counts[word]</code> first. Since <code>"a"</code> has never been added to the dict, that read raises <code>KeyError: 'a'</code> immediately, before any counting can happen at all. This is a very common beginner bug when translating "just count things" intuition directly into dict code without accounting for missing keys. The fix is to use <code>counts.get(word, 0) + 1</code>, a <code>collections.defaultdict(int)</code>, or <code>collections.Counter</code>.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A is what a correct fixed version would produce; C wrongly assumes each key only ever gets set once; D is wrong — dicts store integers just fine, the problem is purely about the missing initial value before incrementing.</p>
+<p class="concept">Concept: incrementing dict values requires the key to already exist (or use defaultdict/Counter/.get())</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which raises an error?</p>
+<p class="qtext"><span class="qnum">Q4.</span> Which of the following raises a <code>TypeError</code> (unhashable type)?</p>
+<ol class="opts">
+<li><b>A.</b> <code>d = {}; d[(1, 2, 3)] = "x"</code></li>
+<li><b>B.</b> <code>d = {}; d["some string"] = "x"</code></li>
+<li><b>C.</b> <code>d = {}; d[[1, 2, 3]] = "x"</code></li>
+<li><b>D.</b> <code>d = {}; d[7] = "x"</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: C</p>
+<p class="why">Dictionary keys must be hashable, and lists are explicitly unhashable because they're mutable (their contents, and therefore their hash, could change after insertion, which would break the dict's internal hash table). Using a list as a key raises <code>TypeError: unhashable type: 'list'</code>.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A works because tuples are immutable and hashable (as long as their elements are also hashable — a tuple of ints qualifies); B and D use ordinary hashable scalar types (str and int) as keys, which is completely standard.</p>
+<p class="concept">Concept: dict key hashability requirement</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q5.</span></p>
+<pre><code>d1 = {"a": "some value", "b": [1, 2, 3, 4], 7: "an integer"}
+d1.update({"b": "foo", "c": 12})
+print(d1)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>{'a': 'some value', 'b': 'foo', 7: 'an integer', 'c': 12}</code></li>
+<li><b>B.</b> <code>{'a': 'some value', 'b': [1, 2, 3, 4], 7: 'an integer', 'c': 12}</code> (b unchanged)</li>
+<li><b>C.</b> Raises a KeyError because 'b' already exists</li>
+<li><b>D.</b> <code>{'b': 'foo', 'c': 12}</code> (old entries discarded)</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A</p>
+<p class="why"><code>update()</code> merges the given key/value pairs into the dict in place: for keys that already exist (like <code>"b"</code>), the old value is overwritten by the new one; for keys that don't exist yet (like <code>"c"</code>), a new entry is added. All keys not mentioned in the update (like <code>"a"</code> and <code>7</code>) are left untouched.</p>
+<p class="why"><strong>Why the others are wrong:</strong> B wrongly assumes update() skips existing keys instead of overwriting them; C is wrong — overwriting an existing key via update() is exactly its intended, error-free behavior; D wrongly assumes update() replaces the whole dict rather than merging into it.</p>
+<p class="concept">Concept: dict.update() merges and overwrites in place</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q6.</span></p>
+<pre><code>strings = ["a", "as", "bat", "car", "dove", "python"]
+loc_mapping = {value: index for index, value in enumerate(strings)}
+print(loc_mapping["dove"])</code></pre>
+<ol class="opts">
+<li><b>A.</b> 3</li>
+<li><b>B.</b> 4</li>
+<li><b>C.</b> "dove"</li>
+<li><b>D.</b> Raises a KeyError</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">The dict comprehension builds a mapping from each string to its position in the list, via <code>enumerate</code>. "dove" is the 5th item, at index 4 (0-based: a=0, as=1, bat=2, car=3, dove=4).</p>
+<p class="why"><strong>Why the others are wrong:</strong> A is off by one; C confuses the key with the value it maps to; D is wrong since "dove" is indeed a key in the resulting dict.</p>
+<p class="concept">Concept: dictionary comprehensions with enumerate()</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Unexpected Behavior</p>
+<p class="qtext"><span class="qnum">Q7.</span> From Lab 2:</p>
+<pre><code>audit_record = {"audit_id": "AUD001", "auditor": "John Doe", "company": "XYZ Corp"}
+x = audit_record.keys()
+audit_record["status"] = "Pending"
+print(x)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>dict_keys(['audit_id', 'auditor', 'company'])</code> — x is a frozen snapshot taken before the update</li>
+<li><b>B.</b> <code>dict_keys(['audit_id', 'auditor', 'company', 'status'])</code> — x is a live view that reflects the later change</li>
+<li><b>C.</b> Raises a RuntimeError because the dict changed size during iteration</li>
+<li><b>D.</b> <code>['audit_id', 'auditor', 'company']</code> (a plain list, unaffected by later changes)</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>dict.keys()</code> returns a "view object" — a live, dynamic window onto the dictionary's current keys, not a static copy taken at the moment of the call. Any subsequent modification to the dictionary (like adding <code>"status"</code>) is immediately reflected when you inspect that view later, even though <code>x</code> was assigned *before* the modification happened.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A is the intuitive-but-wrong assumption that <code>x</code> is a snapshot, like it would be if you'd written <code>x = list(audit_record.keys())</code>; C confuses this with the very different situation of mutating a dict *while actively iterating over it* in a for-loop, which does raise a RuntimeError — but that's not what's happening here (no iteration is in progress); D wrongly assumes <code>.keys()</code> returns an ordinary list.</p>
+<p class="concept">Concept: dict.keys()/.values()/.items() return dynamic views, not static snapshots</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">True or False</p>
+<p class="qtext"><span class="qnum">Q8.</span> True or False: in modern Python (3.7+), dictionaries maintain the order in which keys were first inserted, and iterating over a dict's keys/values/items will reflect that order.</p>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False — dicts remain fundamentally unordered</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A (True)</p>
+<p class="why">Since Python 3.7, dictionary insertion order is officially part of the language guarantee (it was a CPython implementation detail in 3.6). This matches what all the notebook and PDA examples show: keys always print back out in the order they were first added, and updating an existing key's value does not move it to the end.</p>
+<p class="why"><strong>Why the other is wrong:</strong> B reflects an outdated understanding from Python 2 / early Python 3, where dict ordering truly was unspecified.</p>
+<p class="concept">Concept: dictionaries preserve insertion order (Python 3.7+)</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s12">
+<h2>12. Sets</h2>
+<p class="chapter-intro">Sources: PDA "Set" (union/intersection/difference, hashability); Lab 2 Set Features and office-audit union/intersection/difference examples.</p>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q1.</span></p>
+<pre><code>audit_subjects = {
+    "Public Works Expenditure",
+    "Rural Development Fund",
+    "Education Grant Allocation",
+    "Urban Housing Subsidy",
+    "Rural Development Fund"
+}
+print(len(audit_subjects))</code></pre>
+<ol class="opts">
+<li><b>A.</b> 5</li>
+<li><b>B.</b> 4</li>
+<li><b>C.</b> Raises a ValueError due to the duplicate</li>
+<li><b>D.</b> 2</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Sets automatically enforce uniqueness: duplicate values collapse into a single entry with no error and no special handling required. Even though the literal lists "Rural Development Fund" twice, the resulting set has only 4 distinct elements.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A counts the literal's five listed items as if duplicates were kept; C wrongly assumes duplicates cause an error rather than being silently deduplicated; D drastically undercounts.</p>
+<p class="concept">Concept: sets automatically remove duplicates</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which implementation is correct?</p>
+<p class="qtext"><span class="qnum">Q2.</span></p>
+<pre><code>office1_audits = {"Public Works Expenditure", "Education Grant Allocation", "Rural Development Fund", "Healthcare Subsidy"}
+office2_audits = {"Education Grant Allocation", "Rural Development Fund", "Agricultural Loan Scheme", "Urban Housing Subsidy"}</code></pre>
+<p>Which expression gives the audits handled by office1 <em>but not</em> by office2?</p>
+<ol class="opts">
+<li><b>A.</b> <code>office1_audits & office2_audits</code></li>
+<li><b>B.</b> <code>office1_audits | office2_audits</code></li>
+<li><b>C.</b> <code>office1_audits - office2_audits</code></li>
+<li><b>D.</b> <code>office1_audits ^ office2_audits</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: C</p>
+<p class="why">The <code>-</code> operator (or <code>.difference()</code>) computes exactly "elements in the left set that are not in the right set" — here that's <code>{'Healthcare Subsidy', 'Public Works Expenditure'}</code>.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A (<code>&amp;</code>, intersection) gives elements common to *both* sets; B (<code>|</code>, union) gives all elements from either set; D (<code>^</code>, symmetric difference) gives elements in exactly one of the sets (both office1-only *and* office2-only items combined) — a broader result than what was asked for.</p>
+<p class="concept">Concept: set difference (-) vs. intersection (&amp;), union (|), symmetric difference (^)</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which raises an error?</p>
+<p class="qtext"><span class="qnum">Q3.</span> Which of the following raises a <code>TypeError</code>?</p>
+<ol class="opts">
+<li><b>A.</b> <code>my_set = {tuple([1, 2, 3, 4])}</code></li>
+<li><b>B.</b> <code>my_set = {[1, 2, 3, 4]}</code></li>
+<li><b>C.</b> <code>my_set = {1, 2, 3, 4}</code></li>
+<li><b>D.</b> <code>my_set = set([1, 2, 3, 4])</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Set elements, like dict keys, must be hashable. A list is mutable and therefore unhashable, so trying to put one directly into a set literal raises <code>TypeError: unhashable type: 'list'</code>.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A converts the list to a tuple first, which is hashable (as long as its own elements are, which ints are) — this is exactly PDA's recommended workaround; C and D both build sets from already-hashable integers, no issue at all.</p>
+<p class="concept">Concept: set elements must be hashable</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">True or False</p>
+<p class="qtext"><span class="qnum">Q4.</span> True or False: given <code>subject_set = {"a", "b", "c"}</code>, the expression <code>subject_set[0]</code> is valid and retrieves the first element.</p>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B (False)</p>
+<p class="why">Sets are unordered and unindexed collections — there is no concept of a "first element" with a stable position, and sets do not implement <code>__getitem__</code>. This raises <code>TypeError: 'set' object is not subscriptable</code>.</p>
+<p class="why"><strong>Why the other is wrong:</strong> A assumes sets behave like lists/tuples with positional access, but sets are explicitly designed around membership and mathematical set operations, not ordered access.</p>
+<p class="concept">Concept: sets are unordered and unindexed</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which is true?</p>
+<p class="qtext"><span class="qnum">Q5.</span></p>
+<pre><code>a = {1, 2, 3}
+b = {3, 2, 1}
+print(a == b)
+print(a is b)</code></pre>
+<ol class="opts">
+<li><b>A.</b> True then True</li>
+<li><b>B.</b> True then False</li>
+<li><b>C.</b> False then False</li>
+<li><b>D.</b> False then True</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Sets are equal if and only if they contain the same elements, regardless of the order they were written or inserted in — since sets have no inherent order, order simply isn't part of what defines equality here. So <code>a == b</code> is True. But <code>a</code> and <code>b</code> were still constructed as two separate set objects, so <code>a is b</code> is False.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A wrongly assumes equal-content sets are also the same object; C wrongly assumes insertion order affects set equality; D reverses both answers.</p>
+<p class="concept">Concept: set equality is content-based and order-independent</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">True or False</p>
+<p class="qtext"><span class="qnum">Q6.</span> True or False: <code>a |= b</code> modifies <code>a</code> in place (mutating the existing set object), whereas <code>a = a | b</code> creates a brand-new set object and rebinds the name <code>a</code> to it.</p>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False — both forms behave identically under the hood</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A (True)</p>
+<p class="why">This is exactly the pattern PDA highlights: in-place operators like <code>|=</code>, <code>&amp;=</code>, <code>-=</code>, and <code>^=</code> mutate the target set directly, which can be more efficient for very large sets since no new object needs to be allocated and populated. The non-augmented form, <code>a = a | b</code>, always computes a fresh set and simply rebinds the name — if anything else held a reference to the original <code>a</code>, it would not see the update, unlike with the in-place version.</p>
+<p class="why"><strong>Why the other is wrong:</strong> B ignores a meaningful distinction PDA specifically calls out — the two are not interchangeable when other references to the same set object exist.</p>
+<p class="concept">Concept: in-place set operators (|=, &amp;=, etc.) vs. their non-mutating counterparts</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s13">
+<h2>13. Built-In Sequence Functions</h2>
+<p class="chapter-intro">Sources: PDA "Built-In Sequence Functions" (enumerate, sorted, zip, reversed).</p>
+
+<div class="q">
+<p class="qtype">Unexpected Behavior</p>
+<p class="qtext"><span class="qnum">Q1.</span></p>
+<pre><code>seq1 = ["foo", "bar", "baz"]
+seq2 = ["one", "two"]
+print(list(zip(seq1, seq2)))</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>[('foo', 'one'), ('bar', 'two'), ('baz', None)]</code></li>
+<li><b>B.</b> <code>[('foo', 'one'), ('bar', 'two')]</code></li>
+<li><b>C.</b> Raises a ValueError because the sequences have different lengths</li>
+<li><b>D.</b> <code>[('foo', 'one'), ('bar', 'two'), ('baz',)]</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>zip()</code> silently stops as soon as its *shortest* input sequence is exhausted — it does not pad missing values with <code>None</code>, and it does not raise an error. Since <code>seq2</code> only has 2 elements, "baz" from <code>seq1</code> is simply dropped without any warning.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A wrongly assumes zip pads with None (that's what <code>itertools.zip_longest</code> does, not plain zip); C wrongly assumes mismatched lengths are an error condition; D invents a malformed single-element tuple that zip never produces.</p>
+<p class="concept">Concept: zip() truncates silently to the shortest input sequence</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q2.</span></p>
+<pre><code>seq1 = ["foo", "bar", "baz"]
+seq2 = ["one", "two", "three"]
+for index, (a, b) in enumerate(zip(seq1, seq2)):
+    print(f"{index}: {a}, {b}")</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>0: foo, one</code> / <code>1: bar, two</code> / <code>2: baz, three</code></li>
+<li><b>B.</b> <code>1: foo, one</code> / <code>2: bar, two</code> / <code>3: baz, three</code></li>
+<li><b>C.</b> Raises a TypeError because you can't unpack a zip result inside a for-loop tuple</li>
+<li><b>D.</b> <code>0: (foo, one)</code> / <code>1: (bar, two)</code> / <code>2: (baz, three)</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A</p>
+<p class="why"><code>enumerate()</code> defaults to starting its counter at 0. Wrapping <code>zip(seq1, seq2)</code> with <code>enumerate</code> yields <code>(0, ('foo','one'))</code>, <code>(1, ('bar','two'))</code>, etc., and the <code>(a, b)</code> pattern in the for-loop header unpacks each inner tuple directly into named variables.</p>
+<p class="why"><strong>Why the others are wrong:</strong> B assumes enumerate starts counting at 1 by default (it doesn't, unless you pass <code>start=1</code>); C is wrong — nested unpacking like <code>for index, (a, b) in ...</code> is completely standard, valid syntax; D forgets that <code>{a}, {b}</code> in the f-string inserts the unpacked values separately with a comma, not as a printed tuple.</p>
+<p class="concept">Concept: combining enumerate() with zip() and nested unpacking</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">True or False</p>
+<p class="qtext"><span class="qnum">Q3.</span> True or False: <code>print(reversed([1, 2, 3]))</code> displays <code>[3, 2, 1]</code>.</p>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B (False)</p>
+<p class="why"><code>reversed()</code> returns a lazy iterator object (a <code>list_reverseiterator</code>), not a materialized list. Printing it directly shows something like <code>&lt;list_reverseiterator object at 0x...&gt;</code>. You must explicitly materialize it, e.g. with <code>list(reversed([1, 2, 3]))</code>, to see <code>[3, 2, 1]</code>.</p>
+<p class="why"><strong>Why the other is wrong:</strong> A assumes reversed() eagerly builds and returns a list, but PDA explicitly notes it's a generator-like object that must be consumed (via <code>list()</code> or a for-loop) to see its values.</p>
+<p class="concept">Concept: reversed() returns a lazy iterator, not a list</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q4.</span></p>
+<pre><code>print(sorted("horse race"))</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>['a', 'c', 'e', 'e', 'h', 'o', 'r', 'r', 's']</code> (space dropped)</li>
+<li><b>B.</b> <code>[' ', 'a', 'c', 'e', 'e', 'h', 'o', 'r', 'r', 's']</code> (space included, sorted first)</li>
+<li><b>C.</b> <code>['horse', 'race']</code> (sorted words)</li>
+<li><b>D.</b> <code>'acehors ре'</code> (a sorted string)</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>sorted()</code> treats a string as a sequence of its individual characters (including the space), and always returns a list, never a string. The space character has a lower Unicode code point than any letter, so it sorts to the front.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A wrongly drops the space character, which sorted() has no reason to discard; C confuses this with splitting into words first (sorted() never does that on its own); D wrongly assumes sorted() returns a string rather than a list.</p>
+<p class="concept">Concept: sorted() operates on any iterable, including individual string characters, and always returns a list</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which is preferred in real Python programs?</p>
+<p class="qtext"><span class="qnum">Q5.</span> Which of the following is preferred for iterating with both index and value?</p>
+<pre><code># Version 1
+index = 0
+for value in collection:
+    print(index, value)
+    index += 1
+
+# Version 2
+for index, value in enumerate(collection):
+    print(index, value)</code></pre>
+<ol class="opts">
+<li><b>A.</b> Version 1 — it's more explicit about how the index is tracked</li>
+<li><b>B.</b> Version 2 — enumerate() is the idiomatic, less error-prone way to track index and value together</li>
+<li><b>C.</b> Both are equally good and equally common in practice</li>
+<li><b>D.</b> Neither — you should use a while loop with manual indexing instead</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">PDA introduces <code>enumerate()</code> specifically because the manual do-it-yourself counter pattern (Version 1) is common enough to deserve a built-in shortcut — it's shorter, avoids the risk of forgetting to increment (or incrementing twice, or in the wrong place, especially if a <code>continue</code> is added later), and clearly communicates intent.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A overvalues verbosity as "explicitness" when it actually just adds a bug surface; C understates how strongly Version 2 is preferred in idiomatic Python; D suggests something strictly worse than either version shown.</p>
+<p class="concept">Concept: enumerate() as the idiomatic alternative to manual index tracking</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s14">
+<h2>14. Comprehensions</h2>
+<p class="chapter-intro">Sources: PDA "List, Set, and Dictionary Comprehensions" and "Nested list comprehensions".</p>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q1.</span></p>
+<pre><code>strings = ["a", "as", "bat", "car", "dove", "python"]
+print([x.upper() for x in strings if len(x) > 2])</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>['A', 'AS', 'BAT', 'CAR', 'DOVE', 'PYTHON']</code></li>
+<li><b>B.</b> <code>['BAT', 'CAR', 'DOVE', 'PYTHON']</code></li>
+<li><b>C.</b> <code>['a', 'as']</code></li>
+<li><b>D.</b> Raises a TypeError</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">The comprehension filters first (<code>if len(x) > 2</code> excludes "a" and "as", each length 1 and 2), then transforms the survivors with <code>.upper()</code>.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A forgets the filter condition entirely; C shows the excluded items instead of the included ones, and doesn't uppercase them; D is wrong — <code>.upper()</code> works fine on all these strings.</p>
+<p class="concept">Concept: list comprehension filter + transform combined</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q2.</span> PDA's "flatten a list of tuples" example:</p>
+<pre><code>some_tuples = [(1, 2, 3), (4, 5, 6), (7, 8, 9)]
+flattened = [x for tup in some_tuples for x in tup]
+print(flattened)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>[(1, 2, 3), (4, 5, 6), (7, 8, 9)]</code></li>
+<li><b>B.</b> <code>[1, 2, 3, 4, 5, 6, 7, 8, 9]</code></li>
+<li><b>C.</b> <code>[[1, 2, 3], [4, 5, 6], [7, 8, 9]]</code></li>
+<li><b>D.</b> Raises a SyntaxError — you can't have two <code>for</code> clauses in one comprehension</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">A nested comprehension with two <code>for</code> clauses behaves like two nested for-loops written left to right: the outer loop walks each tuple, the inner loop walks each element within that tuple, and every individual element <code>x</code> is collected into one single flat list.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A is what you'd get from a plain single-level comprehension over <code>some_tuples</code> with no inner loop at all; C is what you'd get from the *different* construct <code>[[x for x in tup] for tup in some_tuples]</code> (a comprehension nested inside another comprehension, producing a list of lists rather than one flat list); D is wrong — multiple <code>for</code> clauses in one comprehension are valid and exactly how flattening is done.</p>
+<p class="concept">Concept: nested list comprehensions (multiple for-clauses) flatten; comprehension-inside-comprehension does not</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which implementation produces a different structure?</p>
+<p class="qtext"><span class="qnum">Q3.</span> Continuing directly from Q2's <code>some_tuples</code>, contrast:</p>
+<pre><code>version_a = [x for tup in some_tuples for x in tup]
+version_b = [[x for x in tup] for tup in some_tuples]</code></pre>
+<ol class="opts">
+<li><b>A.</b> Both produce identical flattened lists</li>
+<li><b>B.</b> version_a is a flat list of 9 integers; version_b is a list of 3 lists (one per original tuple)</li>
+<li><b>C.</b> version_a is a list of 3 lists; version_b is flat</li>
+<li><b>D.</b> version_b raises a SyntaxError, since comprehensions cannot be nested inside another comprehension's expression part</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">The two forms look superficially similar but are structurally different. <code>version_a</code> has two <code>for</code> clauses in a single comprehension, which flattens everything into one list. <code>version_b</code> is a comprehension whose *expression* is itself a complete inner comprehension — for each <code>tup</code>, it builds a brand-new small list <code>[x for x in tup]</code> (a straightforward copy of that tuple's elements as a list), and collects those small lists into an outer list, preserving the original grouping.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A ignores the structural difference PDA explicitly calls out as something to "distinguish" carefully; C swaps which version does what; D is wrong — nesting one comprehension inside another's expression is completely valid Python.</p>
+<p class="concept">Concept: nested-for-clause comprehension (flattening) vs. comprehension-of-comprehensions (preserving structure)</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q4.</span></p>
+<pre><code>strings = ["a", "as", "bat", "car", "dove", "python"]
+unique_lengths = {len(x) for x in strings}
+print(unique_lengths)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>[1, 2, 3, 3, 4, 6]</code></li>
+<li><b>B.</b> <code>{1, 2, 3, 4, 6}</code></li>
+<li><b>C.</b> <code>{'a': 1, 'as': 2, 'bat': 3, 'car': 3, 'dove': 4, 'python': 6}</code></li>
+<li><b>D.</b> Raises a TypeError, since len() can't be used inside a set comprehension</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Curly-brace comprehension syntax with a single expression (no colon) builds a <em>set</em>, not a list or dict. The lengths of the six strings are 1, 2, 3, 3, 4, 6 — but since it's a set, the duplicate length 3 (from "bat" and "car") collapses into one entry, leaving 5 unique values.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A shows a list with the duplicate kept, which is what a list comprehension <code>[len(x) for x in strings]</code> would give, not a set comprehension; C confuses this with a dict comprehension, which requires a <code>key: value</code> expression, not present here; D is wrong — calling a function inside a comprehension expression is completely normal.</p>
+<p class="concept">Concept: set comprehensions deduplicate results</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which is more Pythonic / preferred?</p>
+<p class="qtext"><span class="qnum">Q5.</span> To sum the squares of numbers from 0 to 999,999 without needing the intermediate list afterward, which is preferred?</p>
+<ol class="opts">
+<li><b>A.</b> <code>total = sum([x ** 2 for x in range(1_000_000)])</code></li>
+<li><b>B.</b> <code>total = sum(x ** 2 for x in range(1_000_000))</code></li>
+<li><b>C.</b> Both are equally efficient; the brackets vs. parentheses are purely stylistic</li>
+<li><b>D.</b> Neither; you must use a for-loop with a running total for large ranges</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">B uses a <em>generator expression</em> (no enclosing brackets, and no separate parentheses are even needed since it's the sole argument to <code>sum()</code>) — values are produced one at a time and consumed immediately by <code>sum()</code>, never all held in memory simultaneously. A first fully materializes a list of one million integers just to immediately throw it away after summing — a real, avoidable memory and speed cost for large ranges, as PDA notes ("the generator version can sometimes be meaningfully faster").</p>
+<p class="why"><strong>Why the others are wrong:</strong> C understates a genuine (if sometimes small) performance/memory difference; D is unnecessarily low-level — Python already provides an efficient, idiomatic tool for exactly this case.</p>
+<p class="concept">Concept: generator expressions vs. list comprehensions for one-time consumption</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q6.</span></p>
+<pre><code>transactions = {"TXN1": 5000, "TXN2": 15000, "TXN3": 800}
+flagged = {k: v for k, v in transactions.items() if v > 1000}
+print(flagged)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>{'TXN1': 5000, 'TXN2': 15000}</code></li>
+<li><b>B.</b> <code>{'TXN1': 5000, 'TXN2': 15000, 'TXN3': 800}</code></li>
+<li><b>C.</b> <code>['TXN1', 'TXN2']</code></li>
+<li><b>D.</b> <code>{'TXN3': 800}</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A</p>
+<p class="why">The dict comprehension keeps only key/value pairs where the condition <code>v > 1000</code> holds. TXN1 (5000) and TXN2 (15000) qualify; TXN3 (800) does not.</p>
+<p class="why"><strong>Why the others are wrong:</strong> B forgets to apply the filter at all; C wrongly assumes the result is a list of keys rather than a dict of key/value pairs; D inverts the filter condition.</p>
+<p class="concept">Concept: dict comprehensions with a filter condition</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s15">
+<h2>15. Functions</h2>
+<p class="chapter-intro">Sources: PDA "Functions" (default/keyword args, namespaces/scope, returning multiple values, functions as objects, lambda); DSFS Python Crash Course (*args/**kwargs).</p>
+
+<div class="q">
+<p class="qtype">Which raises an error?</p>
+<p class="qtext"><span class="qnum">Q1.</span></p>
+<pre><code>def my_function2(x, y, z=1.5):
+    if z > 1:
+        return z * (x + y)
+    else:
+        return z / (x + y)</code></pre>
+<p>Which call raises a <code>SyntaxError</code>?</p>
+<ol class="opts">
+<li><b>A.</b> <code>my_function2(5, 6, z=0.7)</code></li>
+<li><b>B.</b> <code>my_function2(x=5, 6, 7)</code></li>
+<li><b>C.</b> <code>my_function2(3.14, 7, 3.5)</code></li>
+<li><b>D.</b> <code>my_function2(10, 20)</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Once you start passing arguments by keyword, every argument after it must also be given by keyword — you cannot follow a keyword argument with a positional one. PDA states this restriction plainly: "keyword arguments must follow the positional arguments." <code>my_function2(x=5, 6, 7)</code> puts a positional argument (<code>6</code>) after a keyword argument (<code>x=5</code>), which Python's parser rejects outright as a SyntaxError, before the function is even called.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A correctly supplies <code>z</code> by keyword after two positional args; C supplies all three purely positionally; D omits the optional <code>z</code> entirely, relying on its default — all are valid calls.</p>
+<p class="concept">Concept: keyword arguments must follow positional arguments</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q2.</span> PDA's None-as-sentinel-default pattern:</p>
+<pre><code>def add_and_maybe_multiply(a, b, c=None):
+    result = a + b
+    if c is not None:
+        result = result * c
+    return result
+
+print(add_and_maybe_multiply(2, 3))
+print(add_and_maybe_multiply(2, 3, 4))
+print(add_and_maybe_multiply(2, 3, 0))</code></pre>
+<ol class="opts">
+<li><b>A.</b> 5, 20, 5 — the third call ignores c since 0 is falsy</li>
+<li><b>B.</b> 5, 20, 0 — the third call correctly multiplies by 0</li>
+<li><b>C.</b> 5, 5, 5 — c is never actually used</li>
+<li><b>D.</b> TypeError on the second call, since c isn't declared as a keyword-only argument</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">The check is <code>if c is not None</code>, not <code>if c</code> — this is precisely why <code>None</code> (rather than, say, <code>0</code>) is used as the "not supplied" sentinel. When <code>c=0</code> is explicitly passed, <code>c is not None</code> is still True (0 is not None, just falsy), so the multiplication *does* happen: <code>result * 0 = 0</code>. This distinction — checking identity against None rather than truthiness — is exactly the kind of subtlety that makes None a safer default than 0 or an empty value when 0 is a meaningful input.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A is the bug that would occur if the code had instead written <code>if c:</code> (truthiness check) rather than <code>if c is not None:</code>; C ignores that c is used whenever it's not None; D is wrong — <code>c</code> is a completely ordinary optional positional/keyword parameter, callable either way.</p>
+<p class="concept">Concept: None as a default-argument sentinel, checked via <code>is not None</code> rather than truthiness</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q3.</span> Arbitrary positional and keyword arguments (DSFS-style):</p>
+<pre><code>def magic(*args, **kwargs):
+    print("unnamed:", args)
+    print("keyword:", kwargs)
+
+magic(1, 2, key="word", key2="word2")</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>unnamed: [1, 2]</code> / <code>keyword: [('key', 'word'), ('key2', 'word2')]</code></li>
+<li><b>B.</b> <code>unnamed: (1, 2)</code> / <code>keyword: {'key': 'word', 'key2': 'word2'}</code></li>
+<li><b>C.</b> Raises a TypeError, since positional and keyword arguments can't be mixed in one call</li>
+<li><b>D.</b> <code>unnamed: (1, 2, key, word, key2, word2)</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>*args</code> gathers all extra positional arguments into a <em>tuple</em>; <code>**kwargs</code> gathers all extra keyword arguments into a <em>dict</em> mapping argument names to values. Neither collects into a list — that's a common mix-up.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A uses the wrong container types (lists instead of tuple/dict); C is wrong — mixing positional and keyword arguments in a single call is completely standard; D wrongly dumps everything into one flat tuple, ignoring that keyword arguments are captured separately and by name.</p>
+<p class="concept">Concept: *args (tuple) and **kwargs (dict) for arbitrary arguments</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Identify the Subtle Bug</p>
+<p class="qtext"><span class="qnum">Q4.</span></p>
+<pre><code>a = 10
+def bind_a_variable():
+    a = 20
+
+bind_a_variable()
+print(a)</code></pre>
+<ol class="opts">
+<li><b>A.</b> 20 — the function updated the global a</li>
+<li><b>B.</b> 10 — the function created a separate local variable a that shadows, but never touches, the global one</li>
+<li><b>C.</b> Raises an UnboundLocalError</li>
+<li><b>D.</b> None</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Assigning to a name inside a function makes that name local to the function <em>by default</em> — Python does not automatically reach out and modify a same-named variable in the enclosing global scope. So <code>a = 20</code> inside the function creates and populates a brand-new local variable that vanishes once the function returns, leaving the module-level <code>a</code> completely untouched at 10. To actually modify the global, PDA's own example explicitly requires declaring <code>global a</code> first inside the function.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A is the mistake of assuming assignment anywhere automatically affects the "closest" same-named variable, rather than defaulting to local scope; C would only happen if the function tried to *read* <code>a</code> before assigning to it within the same function body (a different, unrelated scoping trap) — here, the assignment happens cleanly with no prior read; D is not a plausible outcome of this code.</p>
+<p class="concept">Concept: local vs. global scope; assignment defaults to creating a local variable</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q5.</span> Functions as first-class objects (PDA's string-cleaning pipeline, adapted):</p>
+<pre><code>def remove_punctuation(value):
+    return value.replace("!", "").replace("?", "")
+
+clean_ops = [str.strip, remove_punctuation, str.title]
+
+def clean_strings(strings, ops):
+    result = []
+    for value in strings:
+        for func in ops:
+            value = func(value)
+        result.append(value)
+    return result
+
+print(clean_strings(["  west virginia? "], clean_ops))</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>['West Virginia']</code></li>
+<li><b>B.</b> <code>['  west virginia? ']</code> (unchanged)</li>
+<li><b>C.</b> Raises a TypeError, because <code>str.strip</code> and <code>str.title</code> aren't "real" functions, just methods</li>
+<li><b>D.</b> <code>['west virginia']</code> (punctuation removed but not title-cased)</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A</p>
+<p class="why">Since functions (including unbound methods accessed off the class, like <code>str.strip</code>) are first-class objects in Python, they can be stored in a list and called generically via <code>func(value)</code>. Each string is piped through the ops in order: <code>str.strip</code> removes the surrounding whitespace → <code>"west virginia?"</code>; <code>remove_punctuation</code> strips the "?" → <code>"west virginia"</code>; <code>str.title</code> capitalizes each word → <code>"West Virginia"</code>.</p>
+<p class="why"><strong>Why the others are wrong:</strong> B assumes nothing happens, ignoring the whole point of the ops pipeline; C wrongly assumes methods accessed off a class (like <code>str.strip</code>) can't be called this way — they can, by explicitly passing the instance as the first argument, exactly as <code>func(value)</code> does; D forgets that <code>str.title</code> is included in the ops list and does run.</p>
+<p class="concept">Concept: functions (and class methods referenced via the class) as first-class, passable objects</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q6.</span> PDA's lambda-based sort-by-distinct-letters example:</p>
+<pre><code>strings = ["foo", "card", "bar", "aaaa", "abab"]
+strings.sort(key=lambda x: len(set(x)))
+print(strings)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>['aaaa', 'foo', 'abab', 'bar', 'card']</code></li>
+<li><b>B.</b> <code>['card', 'bar', 'foo', 'abab', 'aaaa']</code> (reverse order)</li>
+<li><b>C.</b> <code>['foo', 'card', 'bar', 'aaaa', 'abab']</code> (unchanged)</li>
+<li><b>D.</b> <code>['aaaa', 'abab', 'foo', 'bar', 'card']</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A</p>
+<p class="why">The sort key is the number of <em>distinct</em> characters in each string: "aaaa"→1, "foo"→2 ({'f','o'}), "abab"→2 ({'a','b'}), "bar"→3, "card"→4. Sorting by this key gives 1, 2, 2, 3, 4. For the tie between "foo" and "abab" (both key=2), Python's stable sort preserves their original relative order — "foo" appeared before "abab" in the input — so "foo" comes first.</p>
+<p class="why"><strong>Why the others are wrong:</strong> B reverses the correct order entirely; C assumes no sorting occurred; D incorrectly swaps the tied pair's order, ignoring sort stability (a repeat of the stability concept from the Lists section, now combined with a lambda key).</p>
+<p class="concept">Concept: lambda as a sort key; interaction with stable sort tie-breaking</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which is more Pythonic?</p>
+<p class="qtext"><span class="qnum">Q7.</span> To sort a list of strings by their length, which is preferred?</p>
+<ol class="opts">
+<li><b>A.</b> Defining a full named function just for this one sort call:<br><code>def get_len(x): return len(x)</code><br><code>my_list.sort(key=get_len)</code></li>
+<li><b>B.</b> <code>my_list.sort(key=lambda x: len(x))</code></li>
+<li><b>C.</b> <code>my_list.sort(key=len)</code></li>
+<li><b>D.</b> Both B and C are equally idiomatic, but A is needless boilerplate for a simple, throwaway, one-off transformation</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: D</p>
+<p class="why">When the transformation is simple enough to already exist as a built-in function (here, <code>len</code> itself does exactly what's needed), passing it directly (option C) is the most Pythonic — no wrapper needed at all. When a small one-off transformation is required that isn't already a plain function reference, a lambda (option B) is the idiomatic, lightweight choice, exactly as PDA recommends: "It's often less typing (and clearer) to pass a lambda function... than writing a full-out function declaration." Defining a whole named function (option A) just to use it once is unnecessary ceremony.</p>
+<p class="why"><strong>Why the other options alone are incomplete:</strong> A is valid but needlessly verbose for a single, throwaway use; B alone ignores that C is even simpler since <code>len</code> can be passed directly without wrapping it in a lambda at all; C alone misses that B is the right tool when the transformation isn't already an existing plain function.</p>
+<p class="concept">Concept: choosing between a plain function reference, a lambda, and a full function definition based on reuse and complexity</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which object type is returned?</p>
+<p class="qtext"><span class="qnum">Q8.</span> PDA's "returning multiple values" example:</p>
+<pre><code>def f():
+    a, b, c = 5, 6, 7
+    return a, b, c
+
+x = f()
+print(type(x), x)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>&lt;class 'list'&gt; [5, 6, 7]</code></li>
+<li><b>B.</b> <code>&lt;class 'tuple'&gt; (5, 6, 7)</code></li>
+<li><b>C.</b> Three separate return values are printed: <code>5 6 7</code></li>
+<li><b>D.</b> Raises a SyntaxError, since a function can only return one value</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Python doesn't actually support "returning multiple values" as a distinct language feature — <code>return a, b, c</code> is really packing those three values into a single tuple object and returning *that one object*. PDA states this explicitly: "the function is actually just returning one object, a tuple." Since <code>x</code> wasn't itself unpacked (e.g., via <code>x, y, z = f()</code>), it holds the whole tuple.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A uses the wrong container type — commas without brackets build a tuple, not a list; C wrongly assumes the values are returned/printed independently rather than bundled; D is wrong — this is one of Python's most useful and common patterns, not a syntax error.</p>
+<p class="concept">Concept: "multiple return values" are really one packed tuple</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s16">
+<h2>16. Generators, Iterators &amp; itertools</h2>
+<p class="chapter-intro">Sources: PDA "Generators", "Generator expressions", "itertools module".</p>
+
+<div class="q">
+<p class="qtype">Predict the Output (order matters)</p>
+<p class="qtext"><span class="qnum">Q1.</span></p>
+<pre><code>def squares(n=3):
+    print("start")
+    for i in range(1, n + 1):
+        yield i ** 2
+
+gen = squares()
+print("created")
+for x in gen:
+    print(x)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>start</code> / <code>created</code> / <code>1</code> / <code>4</code> / <code>9</code></li>
+<li><b>B.</b> <code>created</code> / <code>start</code> / <code>1</code> / <code>4</code> / <code>9</code></li>
+<li><b>C.</b> <code>created</code> / <code>1</code> / <code>4</code> / <code>9</code> (start is never printed)</li>
+<li><b>D.</b> <code>start</code> / <code>1</code> / <code>4</code> / <code>9</code> / <code>created</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Calling <code>squares()</code> does <em>not</em> execute any of the function's body yet — it merely constructs and returns a generator object. None of the code inside (including the <code>print("start")</code>) runs until the generator is actually iterated (here, by the <code>for x in gen</code> loop pulling its first value). So <code>"created"</code> prints first, and only once iteration begins does <code>"start"</code> print, followed by the yielded values.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A and D both assume the generator function's body starts running the moment it's called, which contradicts the defining, lazy nature of generators; C wrongly assumes the print statement is somehow skipped rather than just delayed.</p>
+<p class="concept">Concept: generator functions are lazy — the body doesn't execute until iteration begins</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">True or False</p>
+<p class="qtext"><span class="qnum">Q2.</span> True or False: once a generator has been fully iterated (exhausted), calling <code>for x in gen</code> on it again will restart iteration from the beginning.</p>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B (False)</p>
+<p class="why">A generator object maintains internal state about where execution paused; once it's exhausted (raised <code>StopIteration</code> internally after producing its last value), it stays exhausted — it cannot be "rewound." To iterate over the same logical sequence again, you must call the generator <em>function</em> again to create a brand-new generator object.</p>
+<p class="why"><strong>Why the other is wrong:</strong> A confuses a generator with a re-iterable collection like a list, which genuinely can be iterated multiple times because it stores all its values persistently rather than producing them one-shot.</p>
+<p class="concept">Concept: generators are single-use, stateful iterators</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which is more memory efficient?</p>
+<p class="qtext"><span class="qnum">Q3.</span> You need to iterate once over 10 million computed values and don't need to keep them afterward. Which is more memory efficient?</p>
+<ol class="opts">
+<li><b>A.</b> <code>values = [f(x) for x in range(10_000_000)]</code> then loop over <code>values</code></li>
+<li><b>B.</b> <code>values = (f(x) for x in range(10_000_000))</code> then loop over <code>values</code></li>
+<li><b>C.</b> Both use the same amount of memory since both eventually produce 10 million values</li>
+<li><b>D.</b> Neither — you'd need NumPy for this to be memory-efficient at all</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">The generator expression (B) produces one value at a time, on demand, and never holds more than the current value (plus its saved execution state) in memory — ideal when you only need to pass through the sequence once. The list comprehension (A) must build and hold all 10 million results in memory simultaneously before the loop even starts.</p>
+<p class="why"><strong>Why the others are wrong:</strong> C ignores that "producing" values lazily one at a time is fundamentally different from materializing and storing all of them upfront — peak memory usage differs enormously; D is an overcorrection — plain Python generators are already a perfectly adequate, standard-library solution to this exact problem, no external library required.</p>
+<p class="concept">Concept: generator expressions vs. list comprehensions for single-pass memory efficiency</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Identify the Subtle Bug</p>
+<p class="qtext"><span class="qnum">Q4.</span> PDA's itertools.groupby example:</p>
+<pre><code>import itertools
+
+def first_letter(x):
+    return x[0]
+
+names = ["Alan", "Adam", "Wes", "Will", "Albert", "Steven"]
+for letter, group in itertools.groupby(names, first_letter):
+    print(letter, list(group))</code></pre>
+<p>A developer expects this to group <em>all</em> names sharing a first letter together (e.g., all "A" names in one group). What does it actually print, and why?</p>
+<ol class="opts">
+<li><b>A.</b> <code>A ['Alan', 'Adam', 'Albert']</code> / <code>W ['Wes', 'Will']</code> / <code>S ['Steven']</code> — all matching letters are grouped globally</li>
+<li><b>B.</b> <code>A ['Alan', 'Adam']</code> / <code>W ['Wes', 'Will']</code> / <code>A ['Albert']</code> / <code>S ['Steven']</code> — groupby only groups <em>consecutive</em> items sharing a key; "Albert" forms its own separate "A" group because "Wes"/"Will" break the run</li>
+<li><b>C.</b> A single group containing all six names</li>
+<li><b>D.</b> Raises a TypeError since groupby requires a pre-sorted list</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>itertools.groupby</code> only groups <em>consecutive</em> elements that share the same key — it has no memory of earlier groups and does not scan ahead. Once "Wes" (key 'W') appears after "Adam" (key 'A'), the "A" run is considered closed. When "Albert" (key 'A') shows up later, it starts a brand-new, separate "A" group rather than being merged back into the earlier one. This is a very common, genuinely subtle misunderstanding — to get *all* items with the same key grouped together regardless of position, the input must first be sorted by that key (e.g., with <code>sorted(names, key=first_letter)</code>).</p>
+<p class="why"><strong>Why the others are wrong:</strong> A is the natural but incorrect assumption that groupby behaves like a full "group by" operation from SQL/pandas across the whole sequence; C wrongly assumes everything collapses into one group; D is wrong — groupby doesn't raise an error on unsorted input, it just silently produces more (smaller) groups than you might expect, which is precisely what makes this bug easy to miss.</p>
+<p class="concept">Concept: itertools.groupby() only groups consecutive matching elements; requires pre-sorting for global grouping</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q5.</span> Manual iterator protocol:</p>
+<pre><code>it = iter([10, 20, 30])
+print(next(it))
+print(next(it))
+print(list(it))</code></pre>
+<ol class="opts">
+<li><b>A.</b> 10, 20, [10, 20, 30]</li>
+<li><b>B.</b> 10, 20, [30]</li>
+<li><b>C.</b> 10, 10, [10, 20, 30]</li>
+<li><b>D.</b> Raises a StopIteration on the third line</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>next(it)</code> permanently advances the iterator's internal position each time it's called — it doesn't reset or peek. After two calls to <code>next()</code>, the iterator has already "used up" 10 and 20; converting the *remaining* iterator to a list with <code>list(it)</code> only picks up what's left, which is just <code>[30]</code>.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A wrongly assumes the iterator's original full contents are still available afterward, as if <code>next()</code> didn't consume anything; C wrongly assumes calling <code>next()</code> twice returns the same first value both times; D wrongly assumes exhaustion happens here — three total items were requested/available across all three lines (10, 20, then 30 via the list), matching the iterator's length exactly, so no StopIteration bubbles up to the caller.</p>
+<p class="concept">Concept: manual iterator protocol with next(); iterators are stateful and consumed as you go</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s17">
+<h2>17. Errors &amp; Exception Handling</h2>
+<p class="chapter-intro">Sources: PDA "Errors and Exception Handling" (try/except/else/finally, catching specific vs. bare exceptions).</p>
+
+<div class="q">
+<p class="qtype">Which is safer / clearer?</p>
+<p class="qtext"><span class="qnum">Q1.</span> PDA's <code>attempt_float</code> example, in two versions:</p>
+<pre><code># Version 1
+def attempt_float(x):
+    try:
+        return float(x)
+    except:
+        return x
+
+# Version 2
+def attempt_float(x):
+    try:
+        return float(x)
+    except ValueError:
+        return x</code></pre>
+<p>Which is safer, and why?</p>
+<ol class="opts">
+<li><b>A.</b> Version 1 — a bare <code>except</code> catches more cases, so it's more robust</li>
+<li><b>B.</b> Version 2 — catching the specific ValueError avoids silently swallowing unrelated errors (like a genuine bug causing a TypeError, or even KeyboardInterrupt) that should probably not be hidden</li>
+<li><b>C.</b> They are equally safe; the specific exception type is just documentation</li>
+<li><b>D.</b> Version 1, because it means the function never raises any exception under any circumstances, which is always desirable</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">A bare <code>except:</code> catches literally everything, including exceptions that indicate a real bug elsewhere in the code (like passing a tuple, which raises <code>TypeError</code>, not <code>ValueError</code>) or even system-level signals like <code>KeyboardInterrupt</code>. Catching only <code>ValueError</code> lets those other problems surface normally (as real, visible errors) rather than being masked and silently converted into a possibly-nonsensical return value.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A treats "catches more" as automatically better, when in error handling, catching too broadly hides bugs rather than fixing them; C understates a real, meaningful safety distinction PDA calls out; D wrongly treats "never raises anything" as an unconditional virtue — silently returning wrong/unexpected results instead of failing loudly is often worse than raising an error.</p>
+<p class="concept">Concept: catching specific exceptions vs. a bare except clause</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Error</p>
+<p class="qtext"><span class="qnum">Q2.</span> Using Version 2 from Q1 (<code>except ValueError</code> only):</p>
+<pre><code>def attempt_float(x):
+    try:
+        return float(x)
+    except ValueError:
+        return x
+
+attempt_float((1, 2))</code></pre>
+<ol class="opts">
+<li><b>A.</b> Returns <code>(1, 2)</code> unchanged</li>
+<li><b>B.</b> Returns <code>None</code></li>
+<li><b>C.</b> Raises an uncaught <code>TypeError</code>, since <code>float()</code> on a tuple raises TypeError, not ValueError, and this except clause doesn't catch that</li>
+<li><b>D.</b> Raises <code>ValueError</code> as expected and is handled</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: C</p>
+<p class="why"><code>float((1, 2))</code> raises <code>TypeError: float() argument must be a string or a real number, not 'tuple'</code> — a different exception class than <code>ValueError</code>. Since the <code>except</code> clause only listens for <code>ValueError</code>, the <code>TypeError</code> is not caught at all and propagates up out of the function, crashing the program (or being caught further up the call stack) unless something else handles it.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A and B both wrongly assume the exception was gracefully handled; D misidentifies which exception type is actually raised for this particular kind of bad input.</p>
+<p class="concept">Concept: different invalid inputs can raise different exception types; a narrow except only catches what it names</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Predict the Output</p>
+<p class="qtext"><span class="qnum">Q3.</span></p>
+<pre><code>try:
+    print("A")
+except ValueError:
+    print("B")
+else:
+    print("C")
+finally:
+    print("D")</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>A</code> then <code>D</code></li>
+<li><b>B.</b> <code>A</code>, <code>C</code>, <code>D</code></li>
+<li><b>C.</b> <code>A</code>, <code>B</code>, <code>D</code></li>
+<li><b>D.</b> <code>A</code>, <code>C</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">No exception occurs in the <code>try</code> block, so <code>"A"</code> prints and the <code>except</code> block is skipped entirely. The <code>else</code> block runs specifically because the <code>try</code> block succeeded without raising, printing <code>"C"</code>. The <code>finally</code> block always runs regardless of what happened above, printing <code>"D"</code> last.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A forgets the <code>else</code> clause entirely; C wrongly runs the except block even though no exception occurred; D forgets that <code>finally</code> always executes.</p>
+<p class="concept">Concept: try/except/else/finally execution order</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which raises an error?</p>
+<p class="qtext"><span class="qnum">Q4.</span> Which of the following raises a <code>SyntaxError</code> in Python 3?</p>
+<ol class="opts">
+<li><b>A.</b> <code>except (TypeError, ValueError):</code></li>
+<li><b>B.</b> <code>except TypeError, ValueError:</code></li>
+<li><b>C.</b> <code>except Exception as e:</code></li>
+<li><b>D.</b> <code>except ValueError:</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Writing multiple exception types separated by a bare comma (without wrapping them in parentheses as a tuple) is old Python 2 syntax; in Python 3 this raises a <code>SyntaxError</code>. To catch multiple exception types in one clause, PDA shows that a parenthesized tuple is required, as in option A.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A is exactly the correct modern syntax for catching multiple exception types; C is the standard way to bind the caught exception object to a name; D catches a single exception type, entirely valid.</p>
+<p class="concept">Concept: catching multiple exception types requires a parenthesized tuple in Python 3</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">True or False</p>
+<p class="qtext"><span class="qnum">Q5.</span> True or False: code inside a <code>finally</code> block runs even if the code in the <code>try</code> block raises an exception that is never caught by any <code>except</code> clause.</p>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False — finally is skipped if the exception isn't handled</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A (True)</p>
+<p class="why"><code>finally</code> is guaranteed to execute no matter what happens in the <code>try</code> block — whether it succeeds, raises a caught exception, or raises an exception that propagates uncaught past this entire try/except structure. This guarantee is exactly why PDA recommends it for resource cleanup, such as <code>f.close()</code>, ensuring a file handle is released even if something goes wrong while writing to it.</p>
+<p class="why"><strong>Why the other is wrong:</strong> B misunderstands the entire purpose of finally — it's specifically designed to run under *all* circumstances, precisely so that critical cleanup logic can't be accidentally skipped by an unexpected error.</p>
+<p class="concept">Concept: finally always executes, even for uncaught/propagating exceptions</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s18">
+<h2>18. Files &amp; the Operating System</h2>
+<p class="chapter-intro">Sources: PDA §3.3 "Files and the Operating System" (with-statement, file modes, encoding/bytes vs. text mode).</p>
+
+<div class="q">
+<p class="qtype">Which is safer?</p>
+<p class="qtext"><span class="qnum">Q1.</span> Compare:</p>
+<pre><code># Version 1
+f = open("report.txt", mode="w")
+f.write("Audit complete")
+f.close()
+
+# Version 2
+with open("report.txt", mode="w") as f:
+    f.write("Audit complete")</code></pre>
+<p>Which is safer, and why?</p>
+<ol class="opts">
+<li><b>A.</b> Version 1 — explicit close() calls are always clearer than "hidden" context manager behavior</li>
+<li><b>B.</b> Version 2 — the with-block guarantees the file is closed even if an exception occurs during the write, whereas Version 1's close() would never run if write() raised an error first</li>
+<li><b>C.</b> Both are equally safe since both eventually call close()</li>
+<li><b>D.</b> Version 1, because Version 2 automatically deletes the file if an error occurs</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">In Version 1, if <code>f.write(...)</code> raises an exception (e.g., a disk error), execution jumps straight past <code>f.close()</code> — the file handle is left open and its resources are never released. PDA recommends the <code>with</code> statement precisely because it "will automatically close the file f when exiting the with block," including when an exception propagates out of the block.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A is wrong — the context manager isn't "hiding" behavior so much as guaranteeing correctness that manual code has to remember (and often forgets) to replicate with try/finally; C ignores the crucial difference in exception-safety; D invents behavior the with-statement doesn't actually have (it manages closing, not deleting).</p>
+<p class="concept">Concept: with-statement guarantees cleanup even on exceptions</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which raises an error?</p>
+<p class="qtext"><span class="qnum">Q2.</span> Given a file that already exists at <code>path</code>, which file mode raises a <code>FileExistsError</code> if you try to open it that way?</p>
+<ol class="opts">
+<li><b>A.</b> <code>"w"</code></li>
+<li><b>B.</b> <code>"a"</code></li>
+<li><b>C.</b> <code>"x"</code></li>
+<li><b>D.</b> <code>"r"</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: C</p>
+<p class="why"><code>"x"</code> mode means "create a new file, but fail if one already exists at that path" — it's specifically designed to prevent accidentally overwriting an existing file.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A ("w") silently overwrites/truncates any existing file with the same name — no error, but potentially data-destroying, which is exactly the risk "x" mode protects against; B ("a") appends to the end of an existing file (or creates it if missing) without erroring; D ("r") is read-only and would instead fail if the file did <em>not</em> exist.</p>
+<p class="concept">Concept: file modes — the difference between "w" (overwrite), "x" (exclusive create), "a" (append), "r" (read)</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">True or False</p>
+<p class="qtext"><span class="qnum">Q3.</span> A file contains non-ASCII UTF-8 text. True or False: after <code>with open(path) as f: chars = f.read(10)</code>, <code>f.tell()</code> is guaranteed to report exactly <code>10</code>.</p>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B (False)</p>
+<p class="why">In text mode, <code>read(10)</code> requests 10 *characters*, not 10 bytes. UTF-8 is a variable-length encoding — some characters take more than one byte to encode. PDA's own example shows <code>f1.read(10)</code> followed by <code>f1.tell()</code> returning 11, because one of the ten characters required two bytes to decode. The byte position and the character count only coincide when every character happens to be single-byte (pure ASCII).</p>
+<p class="why"><strong>Why the other is wrong:</strong> A assumes a 1-to-1 correspondence between "characters read" and "bytes consumed," which only holds for ASCII-only text — not a safe general assumption.</p>
+<p class="concept">Concept: text-mode reads count characters, not bytes; tell() reports byte position</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which implementation is correct?</p>
+<p class="qtext"><span class="qnum">Q4.</span> You want a list of a file's lines with no trailing newline characters. Which is correct?</p>
+<ol class="opts">
+<li><b>A.</b> <code>lines = list(open(path))</code> — iterating a file object already strips newlines automatically</li>
+<li><b>B.</b> <code>lines = [x.rstrip() for x in open(path)]</code></li>
+<li><b>C.</b> <code>lines = open(path).readlines().strip()</code></li>
+<li><b>D.</b> <code>lines = open(path).read().split(",")</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Iterating over an open file object yields each line *with* its end-of-line marker still attached — PDA notes lines "come out of the file with the end-of-line (EOL) markers intact." Applying <code>.rstrip()</code> to each line (as shown directly in PDA's example) removes that trailing newline (and any trailing whitespace) from each one individually.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A is the common false assumption this question targets — no automatic stripping happens; C is a type error waiting to happen: <code>readlines()</code> returns a *list* of strings, and lists don't have a <code>.strip()</code> method (you'd need to strip each element individually, as in B); D splits on commas, which has nothing to do with removing line breaks and would produce entirely wrong results for line-oriented text.</p>
+<p class="concept">Concept: file iteration keeps EOL markers; use .rstrip()/.strip() to clean them</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s19">
+<h2>19. Object-Oriented Programming Basics</h2>
+<p class="chapter-intro">Source: DSFS Python Crash Course, "Object-Oriented Programming" section (classes, self, instance vs. class attributes). Note: PDA explicitly states OOP is outside its own scope, so this material is drawn from Data Science from Scratch, which does cover it.</p>
+
+<div class="q">
+<p class="qtype">Which object is modified?</p>
+<p class="qtext"><span class="qnum">Q1.</span></p>
+<pre><code>class CountingClicker:
+    def __init__(self, count=0):
+        self.count = count
+    def click(self, num_times=1):
+        self.count += num_times
+    def read(self):
+        return self.count
+
+clicker1 = CountingClicker()
+clicker2 = CountingClicker()
+clicker1.click(3)
+print(clicker1.read(), clicker2.read())</code></pre>
+<ol class="opts">
+<li><b>A.</b> 3 3 — both clickers share the same count</li>
+<li><b>B.</b> 3 0 — each instance has its own independent count</li>
+<li><b>C.</b> 0 3</li>
+<li><b>D.</b> Raises an AttributeError, since count wasn't declared outside __init__</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>self.count</code> inside <code>__init__</code> creates an <em>instance</em> attribute — each object created from the class gets its own separate copy, stored on that specific instance. Calling <code>.click(3)</code> on <code>clicker1</code> only touches <code>clicker1</code>'s own <code>count</code>; <code>clicker2</code>, created independently, still has its own untouched default of 0.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A wrongly assumes instance attributes are shared across all instances of the class; C swaps which clicker was actually clicked; D is wrong — assigning <code>self.count = count</code> inside <code>__init__</code> is exactly the standard way to create an instance attribute, no separate declaration is needed.</p>
+<p class="concept">Concept: instance attributes are independent per object (via self)</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Identify the Subtle Bug</p>
+<p class="qtext"><span class="qnum">Q2.</span></p>
+<pre><code>class Clicker:
+    history = []   # defined at class level, outside __init__
+    def click(self):
+        self.history.append(1)
+
+c1 = Clicker()
+c2 = Clicker()
+c1.click()
+c2.click()
+print(len(c1.history))</code></pre>
+<ol class="opts">
+<li><b>A.</b> 1 — each instance's history is independent</li>
+<li><b>B.</b> 2 — history is a class attribute shared by every instance, so both clicks accumulate into the same list</li>
+<li><b>C.</b> 0</li>
+<li><b>D.</b> Raises an AttributeError, since history was never assigned via self</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Unlike Q1's <code>self.count</code>, <code>history = []</code> here is defined directly in the class body, making it a <em>class</em> attribute — a single list object shared by the class itself and, by default, accessed by every instance that doesn't have its own instance-level override. When <code>c1.click()</code> calls <code>self.history.append(1)</code>, Python looks up <code>history</code>, finds no instance attribute by that name on <code>c1</code>, and falls back to the shared class attribute — mutating that one shared list. The same thing happens for <code>c2</code>, appending to the *same* list. This mirrors the mutable-default-argument pitfall seen earlier with function defaults: mutable objects defined once at class/definition time end up unexpectedly shared.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A is the intuitive assumption that mirrors how instance attributes set in <code>__init__</code> behave — but this is a different situation because <code>history</code> was never assigned per-instance; C wrongly assumes nothing was recorded; D is wrong — reading (and mutating in place, since append doesn't reassign the name) a class attribute through <code>self</code> is completely valid, no error occurs.</p>
+<p class="concept">Concept: shared mutable class attributes vs. per-instance attributes</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">True or False</p>
+<p class="qtext"><span class="qnum">Q3.</span> True or False: <code>self</code> is a reserved keyword in Python, and every instance method's first parameter must literally be named <code>self</code> or a SyntaxError occurs.</p>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B (False)</p>
+<p class="why"><code>self</code> is purely a naming convention, not a reserved word. The first parameter of an instance method automatically receives a reference to the instance the method was called on, regardless of what you name that parameter — you could technically name it <code>this</code> or <code>instance</code> and the code would still run identically. Virtually all Python code uses <code>self</code> by convention because deviating from it makes code confusing to other Python programmers, but it is not enforced by the language itself.</p>
+<p class="why"><strong>Why the other is wrong:</strong> A overstates a strong community convention as a hard language rule.</p>
+<p class="concept">Concept: "self" is a naming convention, not a language keyword</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Unexpected Behavior</p>
+<p class="qtext"><span class="qnum">Q4.</span> Using the <code>CountingClicker</code> class from Q1:</p>
+<pre><code>clicker = CountingClicker()
+clicker.click(5)
+print(clicker.read)</code></pre>
+<ol class="opts">
+<li><b>A.</b> <code>5</code></li>
+<li><b>B.</b> Something like <code>&lt;bound method CountingClicker.read of ...&gt;</code>, not the number 5</li>
+<li><b>C.</b> Raises a TypeError, since read is a method and must be called with parentheses even just to reference it</li>
+<li><b>D.</b> <code>None</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why"><code>clicker.read</code> (without parentheses) refers to the *method object itself* — a "bound method" tied to that particular instance — not the result of calling it. To actually execute the method and get back its return value (the count), you must call it with parentheses: <code>clicker.read()</code>. Forgetting the parentheses is a common typo that doesn't raise an error (since accessing a bound method is valid), which makes it a sneaky bug: the code runs, but prints something clearly unhelpful rather than the expected number.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A is what you'd get if you'd correctly called <code>clicker.read()</code>; C is wrong — merely *referencing* a method without calling it is legal Python, it just gives you the method object rather than invoking it; D is not what accessing a bound method produces.</p>
+<p class="concept">Concept: referencing a bound method vs. calling it — forgetting parentheses</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<section class="chapter" id="s20">
+<h2>20. Type Annotations, Testing &amp; Miscellaneous</h2>
+<p class="chapter-intro">Source: DSFS Python Crash Course — type annotations, assert/automated testing, randomness, argument unpacking with *.</p>
+
+<div class="q">
+<p class="qtype">Unexpected Behavior</p>
+<p class="qtext"><span class="qnum">Q1.</span></p>
+<pre><code>def total(x: int, y: int) -> int:
+    return x + y
+
+print(total("a", "b"))</code></pre>
+<ol class="opts">
+<li><b>A.</b> Raises a TypeError, since "a" and "b" aren't ints</li>
+<li><b>B.</b> Prints <code>"ab"</code> with no error at all — type hints are not enforced at runtime</li>
+<li><b>C.</b> Prints <code>0</code></li>
+<li><b>D.</b> Raises a SyntaxError because of the <code>-&gt; int</code> annotation</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: B</p>
+<p class="why">Python's type annotations (<code>x: int</code>, <code>-&gt; int</code>) are purely informational/documentation — intended for human readers and external static type checkers (like mypy) to analyze *before* the program runs. The Python interpreter itself completely ignores them at runtime and performs no type checking or enforcement whatsoever. Since <code>+</code> is defined for two strings (concatenation), calling <code>total("a", "b")</code> runs the function body exactly as written and simply returns <code>"a" + "b"</code>, i.e. <code>"ab"</code>, despite blatantly violating the annotated types.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A is the very common, incorrect assumption that annotations behave like a statically-typed language's enforced type system; C is not a plausible result of string concatenation; D is wrong — this annotation syntax is fully valid and executes without any parsing issue.</p>
+<p class="concept">Concept: Python type hints are unenforced at runtime (documentation for humans/static checkers only)</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">True or False</p>
+<p class="qtext"><span class="qnum">Q2.</span> True or False: when Python is run with the <code>-O</code> (optimize) command-line flag, all <code>assert</code> statements in the program are skipped/removed, meaning code that relies on assert for validation (rather than just testing) can silently behave differently.</p>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A (True)</p>
+<p class="why">The <code>-O</code> flag strips out <code>assert</code> statements entirely at compile time. This is precisely why <code>assert</code> is considered appropriate for automated testing and sanity-checking assumptions during development, but is a poor substitute for genuine input validation or security checks in production code — those should raise real exceptions (like <code>ValueError</code>) that can't be silently optimized away.</p>
+<p class="why"><strong>Why the other is wrong:</strong> B underestimates a real and sometimes surprising consequence of how <code>assert</code> is implemented in CPython.</p>
+<p class="concept">Concept: assert statements can be stripped out by the -O flag; assert is for testing, not production validation</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">True or False</p>
+<p class="qtext"><span class="qnum">Q3.</span> True or False: calling <code>random.seed(10)</code> before generating a sequence of "random" numbers ensures that the exact same sequence is produced every time the program is run.</p>
+<ol class="opts">
+<li><b>A.</b> True</li>
+<li><b>B.</b> False — the whole point of the random module is that its output can never be made reproducible</li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: A (True)</p>
+<p class="why">Python's <code>random</code> module uses a deterministic pseudo-random number generator: given the same seed value, it will always produce the exact same sequence of "random" numbers. Seeding is an essential technique for writing reproducible examples, debugging, and automated tests that rely on random data but need consistent, predictable results across runs.</p>
+<p class="why"><strong>Why the other is wrong:</strong> B misunderstands pseudo-randomness — it only *appears* unpredictable when unseeded (or seeded differently, e.g. from the system clock); with a fixed seed it becomes fully deterministic and repeatable.</p>
+<p class="concept">Concept: reproducibility via random.seed()</p>
+</div>
+</details>
+</div>
+
+<div class="q">
+<p class="qtype">Which raises an error?</p>
+<p class="qtext"><span class="qnum">Q4.</span> Argument unpacking with <code>*</code>:</p>
+<pre><code>def add(a, b):
+    return a + b
+
+nums = [3, 4]</code></pre>
+<p>Which call raises a <code>TypeError</code>?</p>
+<ol class="opts">
+<li><b>A.</b> <code>add(*nums)</code></li>
+<li><b>B.</b> <code>add(nums[0], nums[1])</code></li>
+<li><b>C.</b> <code>add(nums)</code></li>
+<li><b>D.</b> <code>add(*[3, 4])</code></li>
+</ol>
+<details><summary>Show Answer</summary>
+<div class="answer-block">
+<p class="correct">Correct answer: C</p>
+<p class="why"><code>add</code> requires exactly two positional arguments, <code>a</code> and <code>b</code>. Passing <code>nums</code> without the unpacking <code>*</code> passes the entire list as a single object — Python sees only one argument where two are required, raising <code>TypeError: add() missing 1 required positional argument: 'b'</code>. The <code>*</code> prefix (A and D) is exactly what's needed to unpack the list's elements into separate positional arguments, giving <code>add(3, 4)</code> effectively.</p>
+<p class="why"><strong>Why the others are wrong:</strong> A and D both correctly unpack the list into two separate arguments; B manually extracts each element with indexing, also giving two separate arguments — all three are valid, equivalent calls.</p>
+<p class="concept">Concept: argument unpacking with * to spread a sequence into positional arguments</p>
+</div>
+</details>
+</div>
+
+</section>
+
+<p style="text-align:center; margin-top:50px;"><a class="top" href="#s1">↑ Back to top</a></p>
+</div>
+
+<footer>
+  Question bank synthesized from Data Science from Scratch (Python Crash Course), Python for Data Analysis (Ch. 2–3), and the accompanying Basics of Python &amp; Sequence Data Types Jupyter notebooks. Every "predict the output" answer was hand-traced against documented Python semantics.
+</footer>
+</body>
+</html>
